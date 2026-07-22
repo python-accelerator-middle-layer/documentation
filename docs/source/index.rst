@@ -1,17 +1,26 @@
-.. pyAML Documentation documentation master file, created by
-   sphinx-quickstart on Wed Jul 22 20:29:24 2026.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-pyAML Documentation documentation
-=================================
-
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
-
+pyAML Documentation
+===================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 1
+   :caption: Tutorials
 
+   tutorials/index
+
+.. toctree::
+   :maxdepth: 1
+   :caption: How-to
+
+   how-to/index
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Explanation
+
+   explanation/index
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Reference
+
+   reference/index
