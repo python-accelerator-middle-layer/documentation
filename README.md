@@ -6,6 +6,7 @@ The documentation follows the [Diataxis approach](https://diataxis.fr/).
 
 1. Create a virtual environment and activate it.
 2. Install the requirements with `pip install -r requirements.txt`.
+3. Build the docs `./build-docs.sh`. The new version is available in `docs/build/html/index.html`.
 
 ## Where to Place Content
 
