@@ -1,4 +1,7 @@
 How-to
-=========
+======
 
-Welcome to the how-to section.
+.. toctree::
+   :maxdepth: 1
+
+   install
