@@ -2,6 +2,13 @@ Documentation for Python Accelerator Middle Layer.
 
 The documentation follows the [Diataxis approach](https://diataxis.fr/).
 
+## Building the Docs
+
+1. Create a virtual environment and activate it.
+2. Install the requirements with `pip install -r requirements.txt
+
+## Where to Place Content
+
 Content should be placed in these categories:
 
 #### [Tutorials](https://diataxis.fr/tutorials/)
