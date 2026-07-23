@@ -6,8 +6,9 @@ The documentation follows the [Diataxis approach](https://diataxis.fr/).
 
 1. Create a virtual environment and activate it.
 2. Install the requirements with `pip install -r requirements.txt`.
-3. Build the docs locally with `./build-docs.sh`. The new version is available in `docs/build/html/index.html`.
-4. When the local version looks good, push your changes. Pushes to main will build and deploy the new version.
+3. Create a new branch. The main branch is protected so you can't push to it directly.
+4. Build the docs locally with `./build-docs.sh`. The new version is available in `docs/build/html/index.html`.
+5. When the local version looks good, push your changes and make a pull request. Pushes to main will build and deploy the new version.
 
 ```{note}
 For the notebooks it is necessary to have the required pyAML packages installed in the environment.
