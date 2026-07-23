@@ -39,3 +39,6 @@ html_title = "pyAML Documentation"
 html_show_sourcelink = False
 html_logo = "_static/_images/logo.png"
 html_css_files = ["custom.css"]
+html_sidebars = {
+    "reference/index": [],
+}
