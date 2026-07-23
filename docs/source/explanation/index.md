@@ -1,4 +1,3 @@
-Explanations
-============
+# Explanations
 
 Welcome to the explanations section.
