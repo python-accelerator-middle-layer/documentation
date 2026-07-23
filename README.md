@@ -11,7 +11,7 @@ The documentation follows the [Diataxis approach](https://diataxis.fr/).
 
 ```{note}
 For the notebooks it is necessary to have the required pyAML packages installed in the environment.
-If you add a new dependency remember to also add it in the requirements.txt.
+If you add a new dependency remember to also add it in the requirements.txt or it will not be built correctly.
 ```
 
 ## Where to Place Content
