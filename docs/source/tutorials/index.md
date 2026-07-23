@@ -9,7 +9,7 @@ test_notebook
 
 ```
 
-```{button-link} _static/tutorials.zip
+```{button-link} ../_static/tutorials.zip
 :color: primary
 
 Download all tutorials
