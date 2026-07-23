@@ -8,3 +8,9 @@ Here you can find learning-oriented tutorials that guide you through the functio
 test_notebook
 
 ```
+
+```{button-link} _static/tutorials.zip
+:color: primary
+
+Download all tutorials
+```
