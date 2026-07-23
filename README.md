@@ -10,10 +10,8 @@ The documentation follows the [Diataxis approach](https://diataxis.fr/).
 4. Build the docs locally with `./build-docs.sh`. The new version is available in `docs/build/html/index.html`.
 5. When the local version looks good, push your changes and make a pull request. Pushes to main will build and deploy the new version.
 
-```{note}
 For the notebooks it is necessary to have the required pyAML packages installed in the environment.
 If you add a new dependency remember to also add it in the requirements.txt or it will not be built correctly.
-```
 
 ## Where to Place Content
 
