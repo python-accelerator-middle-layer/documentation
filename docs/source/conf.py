@@ -23,6 +23,12 @@ extensions = [
 templates_path = ['_templates']
 exclude_patterns = []
 
+sd_fontawesome_source = "cdn"
+
+myst_enable_extensions = [
+    "attrs_inline",
+]
+
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
@@ -32,3 +38,4 @@ html_static_path = ['_static']
 html_title = "pyAML Documentation"
 html_show_sourcelink = False
 html_logo = "_static/_images/logo.png"
+html_css_files = ["custom.css"]
