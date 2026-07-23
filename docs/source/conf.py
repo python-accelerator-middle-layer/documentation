@@ -31,3 +31,4 @@ html_theme = 'pydata_sphinx_theme'
 html_static_path = ['_static']
 html_title = "pyAML Documentation"
 html_show_sourcelink = False
+html_logo = "_static/_images/logo.png"
