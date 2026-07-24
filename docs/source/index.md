@@ -19,7 +19,7 @@ The features include, among others:
 :hidden:
 :maxdepth: 1
 
-tutorials/index
+Tutorials <tutorials/index>
 how-to/index
 explanation/index
 reference/index

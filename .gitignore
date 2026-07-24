@@ -70,7 +70,8 @@ instance/
 
 # Sphinx documentation
 docs/_build/
-docs/source/_static/tutorials.zip
+docs/source/sg_execution_times.rst
+docs/source/tutorials/
 
 # PyBuilder
 .pybuilder/

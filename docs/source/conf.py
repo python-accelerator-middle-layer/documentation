@@ -18,6 +18,7 @@ extensions = [
     "sphinx_copybutton",
     "myst_nb",
     "sphinx_design",
+    "sphinx_gallery.gen_gallery",
 ]
 
 templates_path = ['_templates']
@@ -29,6 +30,28 @@ myst_enable_extensions = [
     "attrs_inline",
 ]
 
+sphinx_gallery_conf = {
+    "examples_dirs": "tutorials_src",
+    "gallery_dirs": "tutorials",
+
+    # Binder (cloud notebook)
+    "binder": {
+        "org": "python-accelerator-middle-layer",
+        "repo": "documentation",
+        "branch": "main",
+        "binderhub_url": "https://mybinder.org",
+        "dependencies": ["../../requirements.txt"],
+        "use_jupyter_lab": True,
+    },
+}
+
+exclude_patterns += [
+    "tutorials/*.ipynb",
+    "tutorials/*.py",
+    "tutorials/*.zip",
+    "tutorials/*.codeobj.json",
+    "tutorials_src/GALLERY_HEADER.rst"
+]
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
@@ -41,4 +64,7 @@ html_logo = "_static/_images/logo.png"
 html_css_files = ["custom.css"]
 html_sidebars = {
     "reference/index": [],
+}
+html_theme_options = {
+    "secondary_sidebar_items": ["page-toc","sg_download_links", "sg_launcher_links"],
 }
