@@ -6,26 +6,29 @@ The documentation follows the [Diataxis approach](https://diataxis.fr/).
 
 1. Clone the repository
 2. Create a virtual environment and activate it.
-3. Install the requirements with `pip install -r requirements.txt`.
+3. Install the requirements with `pip install -r requirements.txt -r docs/requirements.txt`.
 4. Create a new branch. The main branch is protected so you can't push to it directly.
 5. Build the docs locally with `./build-docs.sh`. The new version is available in `docs/build/html/index.html`.
 6. When the local version looks good, push your changes and make a pull request. Pushes to main will build and deploy the new version.
 
 For the notebooks it is necessary to have the required pyAML packages installed in the environment.
-If you add a new dependency remember to also add it in the docs/source/requirements.txt or it will not be built correctly.
+If you add a new dependency remember to also add it in the `docs/requirements.txt` or it will not be built correctly.
 
-## Where to Place Content
+## Developing Content
 
 Content should be placed in these categories:
 
 #### [Tutorials](https://diataxis.fr/tutorials/)
 
 A tutorial is a practical activity where learning is done by doing something meaningful towards an achievable goal.
-The purpose is not to get something done but to help to learn.
+The purpose is not to get something done but to help to learn. It should be structured as a lesson. The recommended format is to use a Jupyter notebook.
 
-It should be structured as a lesson. The recommended format is to use a Jupyter notebook.
+The tutorials are rendered using `sphinx-gallery`. They need to be written as a `.py` file using `rst` and not directly as Jupyter notebooks. You can use `jupytext` to make the workflow easier.
 
-#### [How-to guides](https://diataxis.fr/how-to-guides/)
+Jupytext can be used in the terminal but if you are using an IDE there are extensions available which makes it easier. In VS Code install `Jupytext for Notebooks (congyiwu)`. You should then be able to right click on a `.py` file and choose `Open as a Jupyter Notebook`. You can run and modify the notebook as normal and the changes should happen in the `.py` automatically. Just remember that `sphinx-gallery` requires `rst` while notebooks use `markdown` so comments might not be rendered exactly the same.
+
+
+#### [How-to Guides](https://diataxis.fr/how-to-guides/)
 
 How-to guides help to get something done in the correct and safe way.
 The focus should be on how to achieve a specific task.
@@ -33,7 +36,7 @@ The focus should be on how to achieve a specific task.
 Details of the difference between tutorials or how-to guides can be found at https://diataxis.fr/tutorials-how-to/#tutorials-how-to 
 if you are unsure where to place your content.
 
-#### [Technical reference](https://diataxis.fr/reference/)
+#### [Technical Reference](https://diataxis.fr/reference/)
 
 Technical references are technical descriptions of the software, for example the API.
 
