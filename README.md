@@ -4,14 +4,15 @@ The documentation follows the [Diataxis approach](https://diataxis.fr/).
 
 ## Building the Docs
 
-1. Create a virtual environment and activate it.
-2. Install the requirements with `pip install -r docs-requirements.txt`.
-3. Create a new branch. The main branch is protected so you can't push to it directly.
-4. Build the docs locally with `./build-docs.sh`. The new version is available in `docs/build/html/index.html`.
-5. When the local version looks good, push your changes and make a pull request. Pushes to main will build and deploy the new version.
+1. Clone the repository
+2. Create a virtual environment and activate it.
+3. Install the requirements with `pip install -r requirements.txt`.
+4. Create a new branch. The main branch is protected so you can't push to it directly.
+5. Build the docs locally with `./build-docs.sh`. The new version is available in `docs/build/html/index.html`.
+6. When the local version looks good, push your changes and make a pull request. Pushes to main will build and deploy the new version.
 
 For the notebooks it is necessary to have the required pyAML packages installed in the environment.
-If you add a new dependency remember to also add it in the requirements.txt or it will not be built correctly.
+If you add a new dependency remember to also add it in the docs/source/requirements.txt or it will not be built correctly.
 
 ## Where to Place Content
 

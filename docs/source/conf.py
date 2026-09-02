@@ -40,7 +40,7 @@ sphinx_gallery_conf = {
         "repo": "documentation",
         "branch": "main",
         "binderhub_url": "https://mybinder.org",
-        "dependencies": ["../../requirements.txt"],
+        "dependencies": ["requirements.txt"],
         "use_jupyter_lab": True,
     },
 }
