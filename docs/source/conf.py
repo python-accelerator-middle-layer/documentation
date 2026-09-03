@@ -1,3 +1,5 @@
+from sphinx_gallery.sorting import FileNameSortKey
+
 # Configuration file for the Sphinx documentation builder.
 #
 # For the full list of built-in configuration values, see the documentation:
@@ -35,7 +37,9 @@ sphinx_gallery_conf = {
     "gallery_dirs": ["tutorials"],
     "filename_pattern": r"\.py$",
     "show_memory": False,
+    "remove_config_comments": True,
     "min_reported_time": 999999,
+    "within_subsection_order": FileNameSortKey("../tutorials"),
 
     # Binder (cloud notebook)
     "binder": {

@@ -1,2 +1,3 @@
-pyaml-test-lattice==0.1.0a1
+pyaml-test-lattice==0.1.0a2
 git+https://github.com/python-accelerator-middle-layer/pyaml.git@main
+pyaml-cs-oa[tango] @ git+https://github.com/python-accelerator-middle-layer/pyaml-cs-oa.git@main

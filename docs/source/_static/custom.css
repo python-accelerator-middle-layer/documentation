@@ -12,10 +12,11 @@ a.gh-link:visited {
   display: none;
 }
 
-.sphx-glr-thumbnails {
+/* Change the number of columns in the sphinx gallery grid */
+/* .sphx-glr-thumbnails {
   grid-template-columns: 1fr;
   gap: 1rem;
-}
+} */
 
 .sphx-glr-signature {
   display: none;

@@ -16,10 +16,11 @@
 
 # %%
 """
-Creating an Accelerator
+Create an Accelerator
 ==========================================================
 
 This tutorial shows the different ways to create a pyAML accelerator.
+
 The example only uses the simulator mode. The other modes are explored in other tutorials.
 
 The first approach constructs the objects interactively whereas the second one creates them
@@ -37,8 +38,13 @@ to different use cases which will be explained in the tutorial.
 # The example uses the lattice provided by the ``pyaml-test-lattice`` package.
 
 # Get the path to the lattice file
-from pyaml_test_lattice import lattice_file
-lattice_filepath = lattice_file
+# sphinx_gallery_thumbnail_path = '_static/create_accelerator.png'
+from pyaml_test_lattice import lattices
+
+# List available files and their descriptions
+print(lattices)
+
+lattice_file = lattices['fodo_1gev_6d.json']
 
 # %%
 # Approach 1: Interactive Creation
@@ -62,7 +68,7 @@ model = IdentityMagnetModel(physics='')
 quad = Quadrupole(name="QF_001", model=model)
 
 # Create the simulator
-simulator = Simulator(name="design", lattice=str(lattice_filepath))
+simulator = Simulator(name="design", lattice=lattice_file)
 
 # Attach the quadrupole to the simulator
 simulator.fill_device([quad])
@@ -183,7 +189,7 @@ print(config_path.read_text())
 # The syntax for that is shown in this example.
 
 import os
-os.environ["PYAML_TEST_LATTICE"] = str(lattice_file)
+os.environ["PYAML_TEST_LATTICE"] = lattice_file
 
 # %%
 # Create an Accelerator
