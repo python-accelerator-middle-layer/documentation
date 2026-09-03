@@ -27,6 +27,7 @@ The tutorials are rendered using `sphinx-gallery`. They need to be written as a 
 
 Jupytext can be used in the terminal but if you are using an IDE there are extensions available which makes it easier. In VS Code install `Jupytext for Notebooks (congyiwu)`. You should then be able to right click on a `.py` file and choose `Open as a Jupyter Notebook`. You can run and modify the notebook as normal and the changes should happen in the `.py` automatically. Just remember that `sphinx-gallery` requires `rst` while notebooks use `markdown` so comments might not be rendered exactly the same.
 
+To create a new tutorial you can start to write it as a notebook and then use the functionality to convert to `.py`. If you have written comments as markdown you need to manually convert them to `rst`.
 
 #### [How-to Guides](https://diataxis.fr/how-to-guides/)
 
