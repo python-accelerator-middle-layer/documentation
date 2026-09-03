@@ -11,3 +11,31 @@ a.gh-link:visited {
 .sphx-glr-download-zip {
   display: none;
 }
+
+/* Change the number of columns in the sphinx gallery grid */
+/* .sphx-glr-thumbnails {
+  grid-template-columns: 1fr;
+  gap: 1rem;
+} */
+
+.sphx-glr-signature {
+  display: none;
+}
+
+/* Modifications to show the output as in a notebook */
+.sphx-glr-script-out::before {
+  display: none !important;
+  content: none !important;
+}
+
+.sphx-glr-script-out,
+.sphx-glr-script-out div.highlight,
+.sphx-glr-script-out pre {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.sphx-glr-script-out pre {
+  padding: 0;
+}

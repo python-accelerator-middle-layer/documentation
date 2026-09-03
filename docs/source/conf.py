@@ -1,3 +1,5 @@
+from sphinx_gallery.sorting import FileNameSortKey
+
 # Configuration file for the Sphinx documentation builder.
 #
 # For the full list of built-in configuration values, see the documentation:
@@ -31,8 +33,13 @@ myst_enable_extensions = [
 ]
 
 sphinx_gallery_conf = {
-    "examples_dirs": "tutorials_src",
-    "gallery_dirs": "tutorials",
+    "examples_dirs": ["../tutorials"],
+    "gallery_dirs": ["tutorials"],
+    "filename_pattern": r"\.py$",
+    "show_memory": False,
+    "remove_config_comments": True,
+    "min_reported_time": 999999,
+    "within_subsection_order": FileNameSortKey("../tutorials"),
 
     # Binder (cloud notebook)
     "binder": {
@@ -40,17 +47,16 @@ sphinx_gallery_conf = {
         "repo": "documentation",
         "branch": "main",
         "binderhub_url": "https://mybinder.org",
-        "dependencies": ["../../requirements.txt"],
+        "dependencies": ["../requirements.txt"],
         "use_jupyter_lab": True,
     },
 }
 
-exclude_patterns += [
-    "tutorials/*.ipynb",
+exclude_patterns = [
     "tutorials/*.py",
+    "tutorials/*.ipynb",
     "tutorials/*.zip",
     "tutorials/*.codeobj.json",
-    "tutorials_src/GALLERY_HEADER.rst"
 ]
 
 # -- Options for HTML output -------------------------------------------------
@@ -67,4 +73,6 @@ html_sidebars = {
 }
 html_theme_options = {
     "secondary_sidebar_items": ["page-toc","sg_download_links", "sg_launcher_links"],
+    "pygments_light_style": "default",
+    "pygments_dark_style": "monokai",
 }
