@@ -6,20 +6,22 @@ Here you can find task-oriented guides organized by topic.
 :maxdepth: 1
 :caption: Getting Started
 
-python-basics
+getting-started/python-basics
 ```
 
 ```{toctree}
 :maxdepth: 1
 :caption: Installation
 
-user-installation
-developer-installation
+installation/user-installation
+installation/developer-installation
 ```
 
 ```{toctree}
 :maxdepth: 1
 :caption: Configuration
+
+configuration/create-configuration
 
 ```
 
@@ -27,13 +29,20 @@ developer-installation
 :maxdepth: 1
 :caption: Virtual Accelerator
 
-apptainer
+virtual-accelerator/apptainer
 ```
 
 ```{toctree}
 :maxdepth: 1
-:caption: Contributing
+:caption: Validation
 
-contribute
-release.md
+validation/use-schema-registry
+```
+
+```{toctree}
+:maxdepth: 1
+:caption: Contribute
+
+contribute/contribute
+contribute/release.md
 ```
