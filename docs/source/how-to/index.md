@@ -22,6 +22,7 @@ installation/developer-installation
 :caption: Configuration
 
 configuration/create-configuration
+configuration/use-schema-registry
 
 ```
 
