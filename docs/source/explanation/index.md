@@ -6,4 +6,6 @@ Here you can find explanations of the concepts, design decisions, and underlying
 :maxdepth: 1
 
 schema_and_validation
+
+catalog
 ```
