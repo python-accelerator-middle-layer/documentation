@@ -22,6 +22,7 @@ installation/developer-installation
 :caption: Configuration
 
 configuration/create-configuration
+configuration/use-schema-registry
 
 ```
 
@@ -32,12 +33,6 @@ configuration/create-configuration
 virtual-accelerator/apptainer
 ```
 
-```{toctree}
-:maxdepth: 1
-:caption: Validation
-
-validation/use-schema-registry
-```
 
 ```{toctree}
 :maxdepth: 1
