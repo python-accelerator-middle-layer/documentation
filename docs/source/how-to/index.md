@@ -33,7 +33,6 @@ configuration/use-schema-registry
 virtual-accelerator/apptainer
 ```
 
-
 ```{toctree}
 :maxdepth: 1
 :caption: Contribute
