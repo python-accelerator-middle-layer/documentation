@@ -1,4 +1,4 @@
-# Reference
+# API Reference
 
 Here you can find a list of relevant packages together with their status and documentation.
 
@@ -9,7 +9,7 @@ Here you can find a list of relevant packages together with their status and doc
 {bdg-success}`active`
 [{fab}`github`](https://github.com/python-accelerator-middle-layer/pyaml){.gh-link}
 {bdg-link-primary}`PyPI <https://pypi.org/project/accelerator-middle-layer/>`
-{bdg-link-secondary}`Documentation <https://pyaml.readthedocs.io/en/latest/>` 
+{bdg-link-secondary}`Documentation <https://pyaml.readthedocs.io/en/stable/>` 
 
 The core Python Accelerator Middle Layer package.
 ```
@@ -27,9 +27,11 @@ Control system bindings for TANGO.
 
 {bdg-success}`active`
 [{fab}`github`](https://github.com/python-accelerator-middle-layer/pyaml-cs-oa){.gh-link}
-{bdg-link-primary}`PyPI <https://pypi.org/project/pyaml-cs-oa/>` 
+{bdg-link-primary}`PyPI <https://pypi.org/project/pyaml-cs-oa/>`
+{bdg-link-secondary}`Documentation <https://pyaml-cs-oa.readthedocs.io/en/stable/>`  
 
-Control system bindings for TANGO and EPICS using ophyd-async.
+Control system bindings using ophyd-async.
+
 ```
 
 ## Related Packages
