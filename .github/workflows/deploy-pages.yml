@@ -39,12 +39,12 @@ jobs:
         run: cp environment.yml docs/build/html/environment.yml
 
       - name: Publish built docs for Binder
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs/build/html
           publish_branch: gh-pages
-          force_orphan: true
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v6
