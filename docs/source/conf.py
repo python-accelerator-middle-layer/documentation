@@ -45,7 +45,9 @@ sphinx_gallery_conf = {
     "binder": {
         "org": "python-accelerator-middle-layer",
         "repo": "documentation",
-        "branch": "main",
+        # Binder reads files from this branch. The docs build workflow publishes
+        # the generated documentation and notebooks here.
+        "branch": "gh-pages",
         "binderhub_url": "https://mybinder.org",
         "dependencies": ["../requirements.txt"],
         "notebooks_dir": "notebooks",
