@@ -139,7 +139,7 @@ data = {
     "facility": "pyAML test facility",
     "machine": "pyaml test machine",
     "data_folder": None,
-    "energy": None,
+    "energy": 1e9,
     "simulators": [
         {
             "type": "pyaml.lattice.simulator",
