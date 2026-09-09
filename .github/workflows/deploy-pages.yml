@@ -35,8 +35,8 @@ jobs:
       - name: Build Sphinx docs
         run: ./build-docs.sh
 
-      - name: Set Binder Python version
-        run: cp runtime.txt docs/build/html/runtime.txt
+      - name: Add Binder environment configuration
+        run: cp environment.yml docs/build/html/environment.yml
 
       - name: Publish built docs for Binder
         uses: peaceiris/actions-gh-pages@v4
