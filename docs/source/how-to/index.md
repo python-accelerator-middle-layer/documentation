@@ -23,6 +23,8 @@ installation/developer-installation
 
 configuration/create-configuration
 configuration/use-schema-registry
+configuration/generate-json-schema
+configuration/use-meta-configurator
 
 ```
 
