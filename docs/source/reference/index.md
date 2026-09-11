@@ -42,7 +42,7 @@ Control system bindings using ophyd-async.
 {bdg-success}`active`
  [{fab}`github`](https://github.com/kparasch/pySC){.gh-link}
  {bdg-link-primary}`PyPI <https://pypi.org/project/accelerator-commissioning/>`
- {bdg-link-secondary}`Documentation <https://accelerator-commissioning.readthedocs.io/en/latest/>`
+ {bdg-link-secondary}`Documentation <https://accelerator-commissioning.readthedocs.io/en/stable/>`
 
 Python Simulated Commissioning toolkit for synchrotrons.
 ```
