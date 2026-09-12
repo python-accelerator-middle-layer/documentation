@@ -30,21 +30,10 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt -r docs/requirements.txt
+          pip install -r requirements.txt -r binder/requirements.txt
 
       - name: Build Sphinx docs
         run: ./build-docs.sh
-
-      - name: Add Binder environment configuration
-        run: cp environment.yml docs/build/html/environment.yml
-
-      - name: Publish built docs for Binder
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/build/html
-          publish_branch: gh-pages
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v6
