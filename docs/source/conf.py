@@ -47,7 +47,7 @@ sphinx_gallery_conf = {
         "repo": "documentation",
         # Binder reads files from this branch. The docs build workflow publishes
         # the generated documentation and notebooks here.
-        "branch": "gh-pages",
+        "branch": "binder",
         "binderhub_url": "https://mybinder.org",
         "dependencies": ["../../binder/requirements.txt"],
         "notebooks_dir": "notebooks",
