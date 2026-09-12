@@ -49,7 +49,7 @@ sphinx_gallery_conf = {
         # the generated documentation and notebooks here.
         "branch": "gh-pages",
         "binderhub_url": "https://mybinder.org",
-        "dependencies": ["../requirements.txt"],
+        "dependencies": ["../../binder/requirements.txt"],
         "notebooks_dir": "notebooks",
         "use_jupyter_lab": True,
     },
