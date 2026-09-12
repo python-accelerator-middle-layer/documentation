@@ -1,0 +1,4 @@
+pyaml
+pyaml-cs-oa[tango,epics]
+tango-pyaml
+pyaml-test-lattice
