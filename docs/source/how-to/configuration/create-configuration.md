@@ -1,27 +1,24 @@
-# Create Configuration
+# Create and Load Configuration
 
-By creating a configuration it is possible to have pyAML create devices and applications automatically for several control modes.
+The principles and syntax of the configuration are explained in more detail in [Principles and Syntax of the Configuration](../../explanation/configuration). This guide focuses on the different ways to create it.
 
-There are different ways to create a configuration and different formats are supported.
-These are explained in this guide.
+There are several ways to create a configuration. It is recommended to test the different options and see which one you prefer:
 
-## Principle
+- Create `ConfigurationSchema` objects and export as a dictionary or text file
 
-The configuration is done on the level of an `Accelerator`. This allows not only to create devices and applications for different control modes but also to define parameters and metadata which are common for the accelerator.
+- Use a JSON Schema in the [MetaConfigurator](./use-meta-configurator.md)
 
-The syntax supports configuration of both pyAML classes and third party classes to allow the use of pyAML implementations as well as facility specific implementation in the same accelerator. This is done by for each item in the configuration define the field `class` or `class_path` to say which class to build an object of.
+- Use a [JSON Schema in VS Code](./use-vscode-json-schema.md)
 
-## Format Options
+## Load the Configuration
 
-A configuration can be created and loaded using different formats:
+The configuration can be loaded into the `Accelerator` in several ways:
 
-1. File
+| Type| Command | Description |
+| --- | --- | --- |
+| File | `Accelerator.load()` | A text file in JSON on YAML format.
+| Dictionary | `Accelerator.from_dict()` | A nested dictionary.
 
-    The configuration can be written as a text file and loaded using `Accelerator.load()`. Both `YAML` and `JSON` are supported but `YAML` is considered the default option.
+## Validation
 
-2. Dictionary
-
-    The configuration can be written as a nested dictionary and loaded using `Accelerator.from_dict()`.
-
-
-To be continued with details about the different tools to help write it...
+The configuration is validated when loading it into the `Accelerator` but it can also be validated without having to load it. This is useful if you want to be able to maintain it separately from pyAML. See [Validate Configuration](./validate-configuration) for details.

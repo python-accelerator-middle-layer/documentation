@@ -25,6 +25,7 @@ configuration/create-configuration
 configuration/use-schema-registry
 configuration/validate-configuration
 configuration/generate-json-schema
+configuration/use-configuration-schemas
 configuration/use-meta-configurator
 configuration/use-vscode-json-schema
 
