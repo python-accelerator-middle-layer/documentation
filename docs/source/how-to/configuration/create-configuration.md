@@ -4,7 +4,7 @@ The principles and syntax of the configuration are explained in more detail in [
 
 There are several ways to create a configuration. It is recommended to test the different options and see which one you prefer:
 
-- Create `ConfigurationSchema` objects and export as a dictionary or text file
+- [Use ConfigurationSchema](./use-configuration-schema.ipynb) objects and export as a dictionary or text file
 
 - Use a JSON Schema in the [MetaConfigurator](./use-meta-configurator.md)
 
