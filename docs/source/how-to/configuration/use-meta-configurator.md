@@ -1,4 +1,4 @@
-# Use the MetaConfigurator for Writing Configuration
+# Use the MetaConfigurator
 
 [MetaConfigurator](https://github.com/MetaConfigurator/meta-configurator) is a browser-based editor that can generate an editing form from a [JSON Schema](https://json-schema.org/). It can be used for writing and editing pyAML configuration files without having to remember every available field and its expected type.
 
