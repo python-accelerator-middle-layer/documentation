@@ -23,6 +23,11 @@ installation/developer-installation
 
 configuration/create-configuration
 configuration/use-schema-registry
+configuration/validate-configuration
+configuration/generate-json-schema
+configuration/use-configuration-schema
+configuration/use-meta-configurator
+configuration/use-vscode-json-schema
 
 ```
 

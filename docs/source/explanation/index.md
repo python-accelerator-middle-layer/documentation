@@ -5,7 +5,8 @@ Here you can find explanations of the concepts, design decisions, and underlying
 ```{toctree}
 :maxdepth: 1
 
-schema_and_validation
 
+configuration
+schema_and_validation
 catalog
 ```
