@@ -31,7 +31,6 @@ This tutorial shows how to read and correct the betatron tunes.
 #
 # The example uses the configuration provided by the ``pyaml-test-lattice`` package.
 
-# Get the path to the configuration file
 # sphinx_gallery_thumbnail_path = '_static/tune_correction.svg'
 
 from pyaml.common.constants import Action
