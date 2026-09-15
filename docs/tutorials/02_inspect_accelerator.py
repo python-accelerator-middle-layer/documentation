@@ -1,3 +1,19 @@
+# ---
+# jupyter:
+#   jupytext:
+#     cell_metadata_filter: -all
+#     custom_cell_magics: kql
+#     text_representation:
+#       extension: .py
+#       format_name: percent
+#       format_version: '1.3'
+#       jupytext_version: 1.11.2
+#   kernelspec:
+#     display_name: pyaml-documentation
+#     language: python
+#     name: python3
+# ---
+
 # %%
 """
 Inspect an Accelerator
@@ -38,7 +54,16 @@ accelerator = Accelerator.load(configurations["pyaml/tango/pyaml-cs-oa/fodo_1gev
 accelerator.yellow_pages
 
 # %%
-# Show the Configuration of a Magnet
+# Show the Configuration of an Array
 # ------------------------------------
 
-accelerator.design.magnets.get("QF_001")
+quads = accelerator.design.magnets.get("QForTune")
+print(quads)
+
+# %%
+# Show the Configuration of an Magnet in Array
+# --------------------------------------------
+
+print(quads[0])
+
+# %%
