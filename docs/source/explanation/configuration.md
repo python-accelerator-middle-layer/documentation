@@ -1,4 +1,4 @@
-# Principles and Syntax of the Configuration
+# Configuration Structure and Syntax
 
 By creating a configuration it is possible to have pyAML build devices and applications automatically for several control modes.
 
