@@ -8,7 +8,7 @@ This guide shows how to associate a JSON Schema with JSON and YAML files and use
 
 - **JSON**: JSON support is built into VS Code. JSON files are recognized automatically when their names end in `.json`.
 
-- **YAML**: For YAML you need to install an extension. Open the `Extensions` view, search for `YAML`, and install the extension published by Red Hat.
+- **YAML**: For YAML you need to install an extension. Open the `Extensions` view, search for `YAML` and install the extension published by Red Hat.
 
 ## Enable Remote Schema Downloads
 
@@ -36,9 +36,9 @@ The examples use the accelerator schema published in [pyaml-schemas](https://git
 # yaml-language-server: $schema=https://raw.githubusercontent.com/python-accelerator-middle-layer/pyaml-schemas/main/schemas/accelerator.schema.json
 ```
 
-## Edit the file
+## Edit the File
 
-VS Code should now provide code completion when you type a property name. Hover over a property to see its description and red or yellow squiggles show when a value does not match the schema.
+VS Code should now provide code completion when you type a property name. Hover over a property to see its description and red or yellow squiggles should show when a value does not match the schema.
 
 The way the completion looks and works is slightly different between JSON and YAML.
 
