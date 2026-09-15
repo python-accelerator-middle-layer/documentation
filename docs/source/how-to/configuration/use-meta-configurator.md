@@ -30,10 +30,10 @@ In this guide we will focus on the data page but there is also a lot of other fu
 
 On the data page, the editor has two areas:
 
-- **Text view** (on the left): shows and edits the json or yaml document.
+- **Text view** (on the left): shows and edits the JSON or YAML document.
 - **GUI view** (on the right): presents the document as a form generated from the loaded schema. Here you can add values and choose options in a menu.
 
-The GUI View is convenient for knowing which fields exist and their required types. The Text View is useful for checking the final structure and for switching between supported formats.
+The GUI view is convenient for knowing which fields exist and their required types. The Text view is useful for checking the final structure and for switching between supported formats.
 
 ## Load the Schema
 
