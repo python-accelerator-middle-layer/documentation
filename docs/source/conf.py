@@ -56,10 +56,10 @@ sphinx_gallery_conf = {
 }
 
 exclude_patterns = [
-    "tutorials/*.py",
-    "tutorials/*.ipynb",
-    "tutorials/*.zip",
-    "tutorials/*.codeobj.json",
+    "tutorials/**/*.py",
+    "tutorials/**/*.ipynb",
+    "tutorials/**/*.zip",
+    "tutorials/**/*.codeobj.json",
 ]
 
 # -- Options for HTML output -------------------------------------------------

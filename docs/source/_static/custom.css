@@ -39,3 +39,11 @@ a.gh-link:visited {
 .sphx-glr-script-out pre {
   padding: 0;
 }
+
+.sphx-glr-thumbnails:empty {
+  display: none;
+}
+
+.sphx-glr-tag-list:empty {
+  display: none;
+}

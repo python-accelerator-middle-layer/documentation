@@ -41,4 +41,4 @@ accelerator.yellow_pages
 # Show the Configuration of a Magnet
 # ------------------------------------
 
-accelerator.design.magnets.get("QF_001")
+accelerator.design.magnet.get("QF_001")
