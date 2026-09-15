@@ -97,8 +97,8 @@ print(f"Updated strength: {quad.strength.get()}")
 
 from pyaml.accelerator import Accelerator
 
-simulator._MAGNETS.pop("QF_001", None)
-simulator._ALL.pop("QF_001", None)
+# Recreate the simulator since the accelerator will handle the attachment
+simulator = Simulator(name="design", lattice=lattice_file)
 
 accelerator = Accelerator(
     facility="pyAML_test_facility",
