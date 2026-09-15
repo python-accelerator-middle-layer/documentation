@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="800" viewBox="40 50 1520 760" role="img" aria-labelledby="title desc">
+  <title id="title">Tune correction response matrix</title>
+  <desc id="desc">A stylized accelerator ring with quadrupole correctors feeding a tune response matrix and converging tune plot.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#12345a"/>
+      <stop offset="0.55" stop-color="#1a5b88"/>
+      <stop offset="1" stop-color="#1d4168"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#245b87" stop-opacity=".96"/>
+      <stop offset="1" stop-color="#123d65" stop-opacity=".96"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6df3ff"/>
+      <stop offset=".5" stop-color="#56b9ff"/>
+      <stop offset="1" stop-color="#ffd166"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="9" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#8bd7ff" stroke-opacity=".07"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+  <path d="M0 710 C280 610 420 770 690 700 S1170 600 1600 720" fill="none" stroke="#6dd7ff" stroke-opacity=".1" stroke-width="3"/>
+
+  <g transform="translate(90 92)">
+    <text x="0" y="0" fill="#d8f7ff" font-family="sans-serif" font-size="34" font-weight="700">TUNE CORRECTION</text>
+  </g>
+
+  <!-- Accelerator ring -->
+  <g transform="translate(610 525)" filter="url(#glow)">
+    <ellipse rx="360" ry="205" fill="none" stroke="#164c78" stroke-width="34"/>
+    <ellipse rx="360" ry="205" fill="none" stroke="url(#ring)" stroke-width="8"/>
+    <ellipse rx="318" ry="163" fill="none" stroke="#64dfff" stroke-opacity=".24" stroke-width="2" stroke-dasharray="8 18"/>
+    <g fill="#ffbd4a" stroke="#ffe0a0" stroke-width="3">
+      <rect x="-16" y="-230" width="32" height="50" rx="8"/>
+      <rect x="-16" y="180" width="32" height="50" rx="8"/>
+      <rect x="-395" y="-25" width="50" height="32" rx="8"/>
+      <rect x="345" y="-25" width="50" height="32" rx="8"/>
+    </g>
+    <g fill="#38d7ef" stroke="#a6f6ff" stroke-width="2">
+      <circle cx="-235" cy="-145" r="10"/><circle cx="235" cy="-145" r="10"/>
+      <circle cx="-235" cy="145" r="10"/><circle cx="235" cy="145" r="10"/>
+    </g>
+  </g>
+
+  <!-- Response matrix panel -->
+  <g transform="translate(1050 150)">
+    <rect width="430" height="300" rx="18" fill="url(#panel)" stroke="#70e7ff" stroke-opacity=".75" stroke-width="2"/>
+    <text x="30" y="48" fill="#e0faff" font-family="sans-serif" font-size="24" font-weight="700">TUNE RESPONSE</text>
+    <text x="30" y="78" fill="#8ec8e6" font-family="sans-serif" font-size="16">QForTune  →  BETATRON_TUNE</text>
+    <g transform="translate(45 105)">
+      <rect width="200" height="145" rx="5" fill="#09233e" stroke="#6fdfff" stroke-opacity=".45"/>
+      <g fill="#39d8df">
+        <rect x="12" y="12" width="38" height="38"/><rect x="55" y="12" width="38" height="38" fill="#ffca62"/><rect x="98" y="12" width="38" height="38" fill="#5e8fe8"/><rect x="141" y="12" width="47" height="38" fill="#1c6c9e"/>
+        <rect x="12" y="55" width="38" height="38" fill="#72a8f4"/><rect x="55" y="55" width="38" height="38" fill="#27a9c9"/><rect x="98" y="55" width="38" height="38" fill="#ffd166"/><rect x="141" y="55" width="47" height="38" fill="#4d78b5"/>
+        <rect x="12" y="98" width="38" height="35" fill="#164e7b"/><rect x="55" y="98" width="38" height="35" fill="#58dce4"/><rect x="98" y="98" width="38" height="35" fill="#337fc0"/><rect x="141" y="98" width="47" height="35" fill="#ffb84c"/>
+      </g>
+      <path d="M-12 145H205M-12 145V-10" stroke="#b9eeff" stroke-width="2"/>
+      <text x="100" y="170" text-anchor="middle" fill="#83c5e2" font-family="sans-serif" font-size="14">corrector strength</text>
+      <text x="-24" y="70" transform="rotate(-90 -24 70)" text-anchor="middle" fill="#83c5e2" font-family="sans-serif" font-size="14">tune shift</text>
+    </g>
+    <g transform="translate(280 120)" fill="#a8eaff" font-family="sans-serif" font-size="18">
+      <text y="0">∂Qx / ∂K</text><text y="38">∂Qy / ∂K</text><text y="76">pseudoinverse</text>
+    </g>
+  </g>
+
+  <!-- Convergence panel -->
+  <g transform="translate(1050 510)">
+    <rect width="430" height="230" rx="18" fill="url(#panel)" stroke="#ffc95e" stroke-opacity=".8" stroke-width="2"/>
+    <text x="30" y="48" fill="#fff2cb" font-family="sans-serif" font-size="24" font-weight="700">CONVERGENCE</text>
+    <text x="30" y="78" fill="#a9cbe0" font-family="sans-serif" font-size="16">measured tune → target tune</text>
+    <g transform="translate(45 105)">
+      <path d="M0 80H340M0 0V80" stroke="#91cce5" stroke-opacity=".5"/>
+      <path d="M5 66 C70 58 90 42 145 48 S215 20 255 32 S305 12 338 15" fill="none" stroke="#57e6f0" stroke-width="4"/>
+      <path d="M0 28H340" stroke="#ffd166" stroke-width="3" stroke-dasharray="9 8"/>
+      <circle cx="338" cy="15" r="7" fill="#ffd166" stroke="#fff1bd" stroke-width="3"/>
+      <text x="250" y="20" fill="#ffd166" font-family="sans-serif" font-size="14">target</text>
+      <text x="10" y="105" fill="#83c5e2" font-family="sans-serif" font-size="14">iteration</text>
+    </g>
+  </g>
+
+  <path d="M840 405 C920 350 960 330 1050 300" fill="none" stroke="#ffd166" stroke-width="4" stroke-dasharray="10 12"/>
+  <path d="M840 620 C920 650 970 640 1050 625" fill="none" stroke="#63e8f3" stroke-width="4" stroke-dasharray="10 12"/>
+  <circle cx="840" cy="405" r="8" fill="#ffd166"/><circle cx="1050" cy="300" r="8" fill="#ffd166"/>
+  <circle cx="840" cy="620" r="8" fill="#63e8f3"/><circle cx="1050" cy="625" r="8" fill="#63e8f3"/>
+</svg>
