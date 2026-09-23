@@ -19,7 +19,8 @@
 Inspect an Accelerator
 ==========================================================
 
-This tutorial shows how to inspect and access the content of the accelerator.
+This tutorial shows how to find out what an accelerator contains using the *yellow pages*,
+and how to access what you found.
 
 As a reminder, an accelerator contains one or several control modes (for example ``live``
 and ``design``). Each control mode contains the same elements (magnets, BPMs, ...), arrays
@@ -50,85 +51,85 @@ from pyaml.accelerator import Accelerator
 accelerator = Accelerator.load(configurations["pyaml/tango/pyaml-cs-oa/fodo_1gev_6d_pyaml-oa.yaml"])
 
 # %%
-# About This Configuration
-# ------------------------
+# The Yellow Pages
+# ----------------
 #
-# The configuration describes the test lattice introduced in
-# :doc:`Create an Accelerator <01_create_accelerator>`: 16 FODO cells, each containing the
-# magnets ``QF``, ``SF``, ``COR``, ``QD``, ``SD`` and a ``BPM``. Elements are named after their
-# family and cell number, for example ``QF_001``.
+# The yellow pages are a directory of everything the accelerator provides: the control modes
+# and, sorted by category, the arrays, the tuning tools and the diagnostics. They are built
+# automatically by scanning every control mode, so they always reflect what is configured.
 #
-# The configuration links each element to its name in the control system, which follows a
-# TANGO naming convention of the form ``ANcc-AR/<subsystem>/<family>.01/<attribute>``,
-# where ``cc`` is the cell number:
-#
-# ============  ====================================================
-# Element name  Control-system name
-# ============  ====================================================
-# ``QF_001``    ``AN01-AR/EM-QP/QF.01/magnetic_strength``
-# ``QD_001``    ``AN01-AR/EM-QP/QD.01/magnetic_strength``
-# ``SF_001``    ``AN01-AR/EM-SX/SF.01/magnetic_strength``
-# ``SD_001``    ``AN01-AR/EM-SX/SD.01/magnetic_strength``
-# ``COR_001``   ``AN01-AR/EM-COR/CH.01/magnetic_strength`` (horizontal)
-#               ``AN01-AR/EM-COR/CV.01/magnetic_strength`` (vertical)
-# ``BPM_001``   ``AN01-AR/DG-EPOS/BPM.01/x`` and ``.../BPM.01/y``
-# ============  ====================================================
-#
-# It also defines the following arrays and tuning tools, used in the use-case tutorials:
-#
-# ========================  ==========================================================
-# Name                      Content
-# ========================  ==========================================================
-# ``Cell1`` ... ``Cell16``  All the elements of one cell
-# ``BPM``                   The 16 BPMs
-# ``HCorr``, ``VCorr``      The horizontal and vertical correctors
-# ``QForTune``              The 32 quadrupoles used for tune correction
-# ``BETATRON_TUNE``         The betatron tune monitor
-# ``DEFAULT_TUNE_...``      Tune correction and tune response matrix
-# ``DEFAULT_ORBIT_...``     Orbit correction and orbit response matrix
-# ========================  ==========================================================
+# Printing them gives an overview:
+
+yp = accelerator.yellow_pages
+print(yp)
 
 # %%
-# Inspect the Accelerator Contents
-# ------------------------------------
-#
-# The yellow pages provide an overview of the accelerator.
-# This shows what is configured and available for use.
+# Categories and Entries
+# ~~~~~~~~~~~~~~~~~~~~~~
+# The entries are sorted in categories. ``keys()`` lists the entries of one category, or of
+# all categories if none is given.
 
-accelerator.yellow_pages
-
-# %%
-# Access the Control Modes
-# ------------------------
-#
-# Each control mode is an attribute of the accelerator, named after the mode in the
-# configuration. ``modes()`` lists them all.
-
-for name, mode in accelerator.modes().items():
-    print(f"accelerator.{name}: {type(mode).__name__}")
+print(yp.categories())
+print("Arrays:     ", yp.keys("Arrays"))
+print("Tools:      ", yp.keys("Tools"))
+print("Diagnostics:", yp.keys("Diagnostics"))
 
 # %%
-# Show the Configuration of an Array
-# ------------------------------------
+# Check an Entry
+# ~~~~~~~~~~~~~~
+# ``has()`` tells whether an entry exists, and ``availability()`` in which control modes it
+# can be used.
 
-quads = accelerator.design.magnets.get("QForTune")
-print(quads)
-
-# %%
-# Show the Configuration of a Magnet in an Array
-# -----------------------------------------------
-
-print(quads[0])
+print(yp.has("QForTune"), yp.has("QF"))
+print(yp.availability("DEFAULT_TUNE_CORRECTION"))
 
 # %%
-# Find the Accepted Configuration Fields
-# --------------------------------------
-#
-# The configuration fields of the magnet, such as ``name`` and ``model``, are the arguments
-# of the constructor of its class. You can check
-# which arguments a class accepts, and therefore which fields you can write in a
-# configuration file, with ``help()``:
+# Get an Object
+# ~~~~~~~~~~~~~
+# An entry can be accessed as an attribute of the yellow pages. The result gives the object
+# in each control mode where it is available.
 
-help(type(quads[0]))
+qfortune = yp.QForTune
+print(qfortune.keys())
+
+# %%
+# The object of a given mode is the same as the one reached through the control mode itself:
+
+print(qfortune["design"] is accelerator.design.magnets.get("QForTune"))
+
+# %%
+# Search Element Names
+# ~~~~~~~~~~~~~~~~~~~~
+# Indexing the yellow pages searches the names of the elements. With the name of an array,
+# it returns the names of the elements of the array:
+
+print(yp["Cell1"])
+
+# %%
+# Wildcards can be used to match several names:
+
+print(yp["QF_00*"])
+
+# %%
+# For more complex searches, use a regular expression by starting the query with ``re:``:
+
+print(yp["re:^(QF|QD)_01[0-2]$"])
+
+# %%
+# ``get()`` does the same search and can be restricted to one control mode. Here the
+# correctors ``COR_00x`` are combined-function magnets: the search returns both the magnets and
+# their horizontal (``.hcorrector``) and vertical (``.vcorrector``) parts, which are the
+# elements of the ``HCorr`` and ``VCorr`` arrays.
+
+print(yp.get("COR_00*", mode="design"))
+
+# %%
+# Use the Result
+# ~~~~~~~~~~~~~~
+# The names returned by a search can be used to access the elements in any control mode:
+
+for name in yp["re:^QF_00[1-3]$"]:
+    magnet = accelerator.design.magnet.get(name)
+    print(name, magnet.strength.get())
 
 # %%
