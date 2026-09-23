@@ -9,7 +9,7 @@ class: pyaml.accelerator.Accelerator
 facility: pyAML_facility
 machine: storage_ring
 data_folder: ''
-energy: 1e6
+energy: 1e9
 controls:
 simulators:
 arrays:
@@ -20,9 +20,76 @@ The configuration is organised as a description of a nested Python object tree. 
 
 The syntax has been chosen to allow configuration and construction of objects for both pyAML classes and third party classes. This is to allow integration of facility specific implementation in pyAML, but also to simplify future development where it might be desirable to replace old classes with newer versions without breaking compatibility.
 
+## One Field = One Constructor Argument
+
+The whole configuration follows a single rule:
+
+```{important}
+Each configuration item names a Python class in its `class` field. **Every other field of the item is an argument of that class's constructor**, with the same name.
+```
+
+When pyAML reads an item, it imports the class given by `class` and calls it with the remaining fields as keyword arguments. The configuration below and the Python code next to it build exactly the same object:
+
+`````{grid} 2
+:gutter: 2
+
+````{grid-item}
+**Configuration**
+
+```yaml
+class: pyaml.magnet.quadrupole.Quadrupole
+name: QF_001
+model:
+  class: pyaml.magnet.identity_model.IdentityMagnetModel
+  unit: 1/m
+  physics: AN01-AR/EM-QP/QF.01/magnetic_strength
+```
+````
+
+````{grid-item}
+**Python**
+
+```python
+from pyaml.magnet.quadrupole import Quadrupole
+from pyaml.magnet.identity_model import IdentityMagnetModel
+
+Quadrupole(
+    name="QF_001",
+    model=IdentityMagnetModel(
+        unit="1/m",
+        physics="AN01-AR/EM-QP/QF.01/magnetic_strength",
+    ),
+)
+```
+````
+`````
+
+Consequences of this rule:
+
+- **Nested objects are nested items.** If an argument expects an object (here `model` expects a magnet model), the field contains another item with its own `class` field. Lists of objects (such as `devices` or `simulators` of the `Accelerator`) are lists of items.
+- **Optional arguments are optional fields.** Arguments with a default value can be left out.
+- **Unknown fields are rejected.** A field which is not an argument of the constructor, for example a misspelled one, raises an error when the configuration is loaded.
+- **Any class can be used.** Nothing is specific to pyAML classes: a facility-specific class from your own package can be used in the same way, as long as it can be imported.
+
+### Finding the Accepted Fields
+
+Since fields are constructor arguments, the documentation of a class tells you what to write in the configuration. You can:
+
+- read the [API documentation](https://pyaml.readthedocs.io/en/stable/) of the class,
+- use `help()` in Python, which shows the signature of the constructor:
+
+  ```python
+  from pyaml.magnet.quadrupole import Quadrupole
+  help(Quadrupole)
+  # Quadrupole(name: str, model: MagnetModel | None = None,
+  #            lattice_names: str | None = None, description: str | None = None)
+  ```
+
+- use the schema registry, whose `describe()` method lists the fields of a registered class with their types. See [Use the Schema Registry](../how-to/configuration/use-schema-registry.ipynb).
+
 ## Configuration Items
 
-Each configurable item is represented by a mapping which describes the attributes and values needed to construct one Python object. The field `class` or `class_path` identifies the type to construct. It should be written as a fully qualified Python class path, consisting of the module and class name. For example:
+Each configurable item is represented by a mapping which describes the attributes and values needed to construct one Python object. The field `class` (or its alias `class_path`) identifies the type to construct. It should be written as a fully qualified Python class path, consisting of the module and class name. For example:
 
 ```yaml
 class: pyaml.magnet.quadrupole.Quadrupole
@@ -41,6 +108,10 @@ model:
   physics: AN01-AR/EM-QP/QF.01/magnetic_strength
 ```
 
+```{note}
+Older configurations, including the ones of the `pyaml-test-lattice` package, use the legacy `type` field instead of `class`. It contains the path of the **module** instead of the class, for example `type: pyaml.magnet.quadrupole`. The class is then found from the module. This form is still supported, but `class` with the full class path is recommended for new configurations. The two forms cannot be mixed in the same item.
+```
+
 ## Separation between Configuration and Source Code
 
 The configuration describes what should be constructed; it does not contain executable Python code. This keeps configuration readable, reviewable, and usable by tools such as JSON Schema editors.
@@ -57,7 +128,7 @@ The configuration can be written and loaded in different formats:
 
 ## Configuration Root
 
-The configuration root is the directory used to resolve relative configuration paths. It applies to the file passed to `Accelerator.load()` and paths used by [resolvers](#resolvers. Relative paths are resolved against this directory.
+The configuration root is the directory used to resolve relative configuration paths. It applies to the file passed to `Accelerator.load()` and paths used by [resolvers](#resolvers). Relative paths are resolved against this directory.
 
 By default, the root is the current working directory when pyAML is imported. It can be changed before loading a configuration with `ROOT.set()`:
 
@@ -71,7 +142,7 @@ After setting the root, a file written as `devices/quadrupole.yaml` in the confi
 
 Setting the root makes it possible to keep a configuration and its included files in a portable directory tree while selecting that tree at runtime.
 
-Absolute paths are normalized and used directly. 
+Absolute paths are normalized and used directly.
 
 ## Resolvers
 
@@ -89,9 +160,10 @@ The following built-in resolvers are available:
 | --- | --- | --- |
 | `env` | Environment variable | The value of the named environment variable. An error is raised if it is not set. |
 | `path` | A file or directory path | The absolute, normalized path, resolved relative to pyAML's configuration root. The target is not loaded as part of loading the configuration. |
-| `file` | A YAML, YML, or JSON file path | The path to a file which should be loaded and expanded into the configuration as part of loading it. Relative paths use the configuration root. 
+| `file` | A YAML, YML, or JSON file path | The path to a file which should be loaded and expanded into the configuration as part of loading it. Relative paths use the configuration root. |
 
 Configuration files can also be included without an explicit `file` expression. A string ending in `.yaml`, `.yml`, or `.json` is loaded automatically for convenience. This makes it easy to split the configuration into several files if one wishes.
 
 ```{warning}
 If you include a `.yaml`, `.yml`, or `.json` in the configuration file which you do not want to be loaded and expanded into the configuration (for example a lattice in JSON format), remember to put `${path:filename}` or you will get an error when loading the configuration.
+```

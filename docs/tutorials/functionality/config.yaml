@@ -1,15 +1,14 @@
-type: pyaml.accelerator
+class: pyaml.accelerator.Accelerator
 facility: pyAML test facility
 machine: pyaml test machine
-data_folder: null
-energy: 1000000000.0
+energy: 1.0e9
 simulators:
-- type: pyaml.lattice.simulator
-  lattice: ${env:PYAML_TEST_LATTICE}
-  name: design
+  - class: pyaml.lattice.simulator.Simulator
+    name: design
+    lattice: ${env:PYAML_TEST_LATTICE}
 devices:
-- type: pyaml.magnet.quadrupole
-  name: QF_001
-  model:
-    type: pyaml.magnet.identity_model
-    physics: ''
+  - class: pyaml.magnet.quadrupole.Quadrupole
+    name: QF_001
+    model:
+      class: pyaml.magnet.identity_model.IdentityMagnetModel
+      physics: ''
