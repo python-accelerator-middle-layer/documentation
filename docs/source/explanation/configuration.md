@@ -108,10 +108,6 @@ model:
   physics: AN01-AR/EM-QP/QF.01/magnetic_strength
 ```
 
-```{note}
-Older configurations, including the ones of the `pyaml-test-lattice` package, use the legacy `type` field instead of `class`. It contains the path of the **module** instead of the class, for example `type: pyaml.magnet.quadrupole`. The class is then found from the module. This form is still supported, but `class` with the full class path is recommended for new configurations. The two forms cannot be mixed in the same item.
-```
-
 ## Separation between Configuration and Source Code
 
 The configuration describes what should be constructed; it does not contain executable Python code. This keeps configuration readable, reviewable, and usable by tools such as JSON Schema editors.

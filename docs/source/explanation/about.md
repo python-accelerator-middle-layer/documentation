@@ -14,11 +14,11 @@ pyAML carries that idea forward with a few important changes:
 
 ## Goals
 
-The collaboration has identified the following key features for pyAML:
+The collaboration has identified the following key features for pyAML. They are the goals of the project: some of them are already available, others are still being developed.
 
 - An agnostic interface between an accelerator control system (TANGO, EPICS, ...), a virtual accelerator and a digital model.
 - A base for developing and sharing beam measurement tools, such as orbit, trajectory, linear and non-linear optics corrections.
-- A virtual accelerator / digital twin which allows testing tuning tools in real-life conditions without the need for beam time.
+- The possibility to use a virtual accelerator or a digital twin, to test tuning tools in real-life conditions without the need for beam time.
 - Handling of both physics and hardware units, with a flexible unit-conversion interface.
 - The possibility to configure different types of accelerators: transfer lines, linear and circular accelerators, and ramped accelerators.
 - Configuration and measurement data managed in a standardized manner.
@@ -31,7 +31,7 @@ The collaboration has identified the following key features for pyAML:
 The software is organized in layers:
 
 **Core**
-: The features needed to configure a machine and communicate with the different backends: abstraction of devices (magnets, BPMs, tune monitors, ...), grouping of devices in arrays, abstraction of the control system, connection to simulators, and conversion between hardware and physics units. This is the `pyaml` package.
+: The features needed to configure a machine and communicate with the different backends: abstraction of devices (magnets, BPMs, tune monitors, ...), grouping of devices in arrays, the simulator backend based on pyAT, conversion between hardware and physics units, and the *abstract interface* to control systems. This is the `pyaml` package. The actual communication with a given control system is implemented in separate packages, the control-system bindings (`tango-pyaml`, `pyaml-cs-oa`), so that a facility only installs the ones it needs.
 
 **Common high-level applications**
 : Tools shared between facilities, built on top of the core: tune and chromaticity correction, response-matrix measurements, orbit correction, dispersion measurement, beam-based alignment, LOCO, etc.

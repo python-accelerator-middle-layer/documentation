@@ -32,6 +32,8 @@ controls:
   - class: pyaml_cs_oa.controlsystem.OphydAsyncControlSystem
     name: live
     catalog: catalog.yaml
+devices:
+  # ... magnets, BPMs, tuning tools
 ```
 
 ```python

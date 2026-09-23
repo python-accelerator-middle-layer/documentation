@@ -184,7 +184,7 @@ arrays:
 
 ## Split the Configuration into Several Files
 
-For a real machine the configuration becomes long. Any string ending with `.yaml`, `.yml` or `.json` in a list is replaced by the content of that file. If the file contains a list, its items are added to the parent list. For example, move the quadrupoles to `devices/quadrupoles.yaml`:
+For a real machine the configuration becomes long. When the configuration is loaded from a file, any string value ending with `.yaml`, `.yml` or `.json` is replaced by the content of that file (this is how `catalog: catalog.yaml` above is loaded). Inside a list, if the file contains a list, its items are added to the parent list. For example, move the quadrupoles to `devices/quadrupoles.yaml`:
 
 ```yaml
 # devices/quadrupoles.yaml

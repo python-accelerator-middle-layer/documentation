@@ -8,13 +8,13 @@ pyAML is not a single package but a small ecosystem. You only install what your 
 
 | Package | Role |
 | --- | --- |
-| `pyaml` (PyPI: `accelerator-middle-layer`) | The core: accelerator, control modes, elements, arrays, unit conversion, configuration loading and validation, tuning tools. It includes the simulator backend based on [pyAT](https://atcollab.github.io/at/p/index.html). |
+| `pyaml` (PyPI: `accelerator-middle-layer`) | The core: accelerator, elements, arrays, unit conversion, configuration loading and validation, tuning tools, the simulator backend based on [pyAT](https://atcollab.github.io/at/p/index.html), and the abstract interface (`ControlSystem`, `DeviceAccess`) that control-system bindings implement. It does not communicate with any control system by itself. |
 | `tango-pyaml` | Control-system bindings for TANGO. |
 | `pyaml-cs-oa` | Control-system bindings based on [ophyd-async](https://blueskyproject.io/ophyd-async/), supporting EPICS (Channel Access and PV Access) and TANGO. |
 | Facility packages | Optional packages containing classes specific to one facility (special magnet models, devices, applications, ...). |
 | `pyaml-test-lattice` | A test lattice with ready-made configurations, used in the tutorials. |
 
-The core never imports a control system directly. A control system is selected in the configuration by naming the class of its bindings. Only the bindings you use have to be installed. See [User Installation](../how-to/installation/user-installation.md) and the [API Reference](../reference/index.md).
+The core never imports a control system library directly. A control system is selected in the configuration by naming the class of its bindings, which implement the abstract interface of the core. Only the bindings you use have to be installed. See [User Installation](../how-to/installation/user-installation.md) and the [API Reference](../reference/index.md).
 
 ## Object Hierarchy
 
@@ -77,7 +77,7 @@ Using explicit `get()` and `set()` methods instead of plain assignment is a deli
 
 ### Arrays
 
-Arrays are named groups of elements, declared in the `arrays` section of the configuration. They allow reading or setting all elements of a group in a single, synchronized call:
+Arrays are named groups of elements, declared in the `arrays` section of the configuration. They allow reading or setting all elements of a group in a single call. When the backend supports it, the individual requests are grouped (for example `pyaml-cs-oa` sends them concurrently, and the simulator computes the closed orbit once for all the BPMs of an array):
 
 ```python
 quads = accelerator.design.magnets.get("QForTune")
@@ -102,7 +102,7 @@ At the bottom of the hierarchy, attributes talk to a backend:
 
 ## Discovering What Is Available
 
-The accelerator provides a `yellow_pages` object listing everything that is configured (arrays, tools, diagnostics) and in which control modes it is available:
+The accelerator provides a `yellow_pages` object listing everything that is configured: control modes, arrays, tools and diagnostics. Its `availability()` method tells in which control modes a given entry is available:
 
 ```python
 print(accelerator.yellow_pages)
