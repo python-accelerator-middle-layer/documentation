@@ -60,7 +60,6 @@ Consequences of this rule:
 
 - **Nested objects are nested items.** If an argument expects an object (here `model` expects a magnet model), the field contains another item with its own `class` field. Lists of objects (such as `devices` or `simulators` of the `Accelerator`) are lists of items.
 - **Optional arguments are optional fields.** Arguments with a default value can be left out.
-- **Unknown fields are rejected.** A field which is not an argument of the constructor, for example a misspelled one, raises an error when the configuration is loaded.
 - **Any class can be used.** Nothing is specific to pyAML classes: a facility-specific class from your own package can be used in the same way, as long as it can be imported.
 
 ### Finding the Accepted Fields
