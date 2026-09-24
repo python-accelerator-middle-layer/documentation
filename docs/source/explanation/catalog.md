@@ -16,7 +16,9 @@ The catalog makes it possible to use simple keys in the pyAML configuration and 
 
 ## Dynamic Catalog
 
+```{tip}
 The dynamic catalog does not require a configuration file and it is therefore the recommended option for most use cases.
+```
 
 In this version, the configuration is extracted from a dynamic source. This can be directly from the control system or some other source, for example a database, depending on the chosen backend and its catalog implementation.
 
