@@ -12,7 +12,7 @@ pyAML is not a single package but a small ecosystem. You only install what your 
 | `tango-pyaml` | Control-system bindings for TANGO. |
 | `pyaml-cs-oa` | Control-system bindings based on [ophyd-async](https://blueskyproject.io/ophyd-async/), supporting EPICS (Channel Access and PV Access) and TANGO. |
 | Facility packages | Optional packages containing classes specific to one facility (special magnet models, devices, applications, ...). |
-| `pyaml-test-lattice` | A test lattice with ready-made configurations, used in the tutorials. |
+| `pyaml-test-lattice` | A test lattice with ready-made configurations, used in the tutorials and for integration tests. |
 
 The core never imports a control system library directly. A control system is selected in the configuration by naming the class of its bindings, which implement the abstract interface of the core. Only the bindings you use have to be installed. See [User Installation](../how-to/installation/user-installation.md) and the [API Reference](../reference/index.md).
 
