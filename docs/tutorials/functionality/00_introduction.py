@@ -71,7 +71,8 @@ It does not contain any code: the hands-on part starts in the next tutorial.
 #   argument of that class's constructor**. This rule is explored in the first tutorial.
 #
 # See :doc:`pyAML Structure <../../explanation/architecture>` and
-# :doc:`Control Modes <../../explanation/control-modes>` for more details.
+# :doc:`Control Modes <../../explanation/control-modes>` for more details, and the
+# :doc:`Glossary <../../explanation/glossary>` for the definitions of the terms used in pyAML.
 
 # %%
 # How the Tutorials Work

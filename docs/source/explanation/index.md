@@ -11,4 +11,5 @@ control-modes
 configuration
 schema_and_validation
 catalog
+glossary
 ```
