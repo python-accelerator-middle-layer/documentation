@@ -25,7 +25,7 @@ The syntax has been chosen to allow configuration and construction of objects fo
 The whole configuration follows a single rule:
 
 ```{important}
-Each configuration item names a Python class in its `class` field. **Every other field of the item is an argument of that class's constructor**, with the same name.
+Each configuration item names a Python class in its `class` field. **Every other field of the item is an argument to that class's constructor**, with the same name as the field and the value to be passed to the constructor.
 ```
 
 When pyAML reads an item, it imports the class given by `class` and calls it with the remaining fields as keyword arguments. The configuration below and the Python code next to it build exactly the same object:
