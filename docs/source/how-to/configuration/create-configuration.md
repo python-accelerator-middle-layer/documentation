@@ -5,6 +5,7 @@ This guide shows how to write a pyAML configuration and load it into an `Acceler
 ```{tip}
 Read [Configuration Structure and Syntax](../../explanation/configuration) which explains the concepts and ideas behind the configuration before you start.
 ```
+The configuration can be written as a text file in YAML or JSON or as a dictionary.
 
 ## The Rule to Remember
 
