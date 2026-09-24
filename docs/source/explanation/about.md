@@ -1,6 +1,6 @@
 # What is pyAML?
 
-The Python Accelerator Middle Layer (pyAML) is a Python library that sits between the people who operate or study a particle accelerator and the many systems that make up that accelerator: control systems, simulation codes, archivers, databases, and so on. It is developed by a collaboration of accelerator facilities as a common platform for the design, commissioning, and operation of particle accelerators.
+The Python Accelerator Middle Layer (pyAML) is an ecosystem of Python packages that provides a common layer between people who operate or study particle accelerators and the different tools they need to work with, such as control systems and simulation codes. It is developed by a collaboration of accelerator facilities as a common framework for the design, commissioning, and operation of particle accelerators.
 
 ## Why a Middle Layer?
 
