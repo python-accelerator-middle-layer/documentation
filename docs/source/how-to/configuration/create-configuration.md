@@ -60,8 +60,8 @@ The root item is the `Accelerator`. Its required arguments are `facility`, `mach
 
 ```yaml
 class: pyaml.accelerator.Accelerator
-facility: My facility
-machine: sr
+facility: my_facility
+machine: storage_ring
 energy: 1.0e9
 ```
 
