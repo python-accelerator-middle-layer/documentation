@@ -8,11 +8,13 @@ Read [Configuration Structure and Syntax](../../explanation/configuration) which
 
 ## The Rule to Remember
 
+The configuration consists of a set of items which tells pyAML which objects to build when loading the configuration.
+
 ```{important}
-Each item of the configuration names a Python class in its `class` field. **Every other field is an argument of the constructor of that class**, with the same name as the field. When an argument is an object, its value is a nested item with its own `class` field.
+Each item of the configuration names a Python class in its `class` field. **Every other field is an argument of the constructor of that class** with the same name as the field and the value to pass to the constructor. When a constructor argument is an object, its value in the configuration is a nested item with its own `class` field.
 ```
 
-Writing a configuration is therefore the same as writing the Python code that creates the objects, in YAML (or JSON) instead of Python.
+Writing and loading the configuration is the equivalent of writing the Python code that creates the objects yourself. The configuration just allows pyAML to create the objects for you.
 
 ## Find the Fields of a Class
 
