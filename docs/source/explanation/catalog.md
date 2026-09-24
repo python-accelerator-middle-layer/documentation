@@ -24,18 +24,7 @@ In this version, the configuration is extracted from a dynamic source. This can 
 
 This requires access to the source, for example by being on the same network, but no configuration file for the control system configuration has to be loaded by pyAML.
 
-Example of configuration for dynamic catalog:
-
-```yaml
-controls:
-  - class: pyaml_cs_oa.controlsystem.OphydAsyncControlSystem
-    name: live
-    catalog:
-      class: pyaml_cs_oa.dynamic_catalog.DynamicCatalog
-      backend: tango
-```
-
-With `pyaml-cs-oa`, a dynamic catalog is also used when no catalog is given, based on the `backend` field of the control system:
+Example of configuration for dynamic catalog for the `pyaml-cs-oa` bindings :
 
 ```yaml
 controls:
@@ -44,7 +33,17 @@ controls:
     backend: tango
 ```
 
-Dynamic catalogs are currently provided by `pyaml-cs-oa`. Check the documentation of your control-system bindings for the catalogs they support.
+The backend (currently TANGO or EPICS) is specified using the `backend` field.
+
+For the `tango-pyaml` bindings no backend needs to be specified:
+
+```yaml
+controls:
+  - class: tango.pyaml.tango_catalog.TangoCatalog
+    name: live
+```
+
+Check the [API documentation](../reference/index.md) for all the options for the bindings you want to use.
 
 ## Static Catalog
 
