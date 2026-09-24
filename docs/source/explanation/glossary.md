@@ -18,7 +18,7 @@ Tuning tool
 : A high-level measurement or correction tool (tune correction, orbit correction, response matrix measurement, ...) configured like any other device.
 
 Backend
-: The system that a control mode talks to: a control system (through control-system bindings such as `tango-pyaml` or `pyaml-cs-oa`) or a simulation code (pyAT).
+: The system that a control mode talks to: a control system (through control-system bindings such as `tango-pyaml` or `pyaml-cs-oa`) or a simulation code (`pyAT`).
 
 Catalog
 : The backend-specific description of how a key used in the configuration maps to a signal of the control system. See [Control System Catalogs](catalog.md).
