@@ -4,11 +4,14 @@ The documentation for pyAML has been separated into parts to make it more modula
 
 - **Ecosystem documentation**: contains documentation for the whole ecosystem. This includes tutorials, how-to guides and explanation.
 
-  This documentation is hosted in its own repository https://github.com/python-accelerator-middle-layer/documentation and published to GitHub pages at https://python-accelerator-middle-layer.github.io/documentation/. Information about how to contribute and build it is available in the repository README.
+    This documentation is hosted in its own repository and published to GitHub pages. Information about how to contribute and build it is available in the repository README.
 
-- **Package documentation**: each package also its own documentation. This is primarily meant for API documentation but can also include other parts if needed for that specific package.
+    Repository: <https://github.com/python-accelerator-middle-layer/documentation>  
+    GitHub page: <https://python-accelerator-middle-layer.github.io/documentation/>. 
 
-  This documentation is hosted inside the package repository. It is built and published by readthedocs to allow to publish several version. For it to automatically build, the repository needs to be linked to a project on readthedocs.
+- **Package documentation**: each package also its own documentation. This is primarily meant for API documentation but can also include other parts if needed for that specific package.  
+
+  This documentation is hosted inside the package repository. It is built and published by [readthedocs](https://about.readthedocs.com/) to allow to publish several versions. For it to automatically build, the repository needs to be linked to a project on readthedocs.
   
   On readthedocs it is possible to configure to build on pull requests. If this has been activated a link appears in the GitHub pull request where you can view the built documentation as part of the review.
 
@@ -16,7 +19,7 @@ The documentation for pyAML has been separated into parts to make it more modula
   
 ## Docstring Format
 
-pyAML uses NumPy style docstrings. An example of the format is available at [Example NumPy Style Python Docstrings](https://www.sphinx-doc.org/en/master/usage/extensions/example_numpy.html)
+PyAML uses NumPy style docstrings. An example of the format is available at [Example NumPy Style Python Docstrings](https://www.sphinx-doc.org/en/master/usage/extensions/example_numpy.html).
 
 For pyAML the following has been decided:
 
