@@ -1,6 +1,6 @@
 # Create and Load Configuration
 
-This guide shows how to write a pyAML configuration as a text file and load it into an `Accelerator`.
+This guide shows how to write a pyAML configuration as a text file and load it into an `Accelerator`. It gives recommendations for how to write it and list tools that are available to help.
 
 ```{tip}
 Read [Configuration Structure and Syntax](../../explanation/configuration) which explains the concepts and ideas behind the configuration before you start.
@@ -9,7 +9,7 @@ Read [Configuration Structure and Syntax](../../explanation/configuration) which
 ## The Rule to Remember
 
 ```{important}
-Each item of the configuration names a Python class in its `class` field. **Every other field is an argument of the constructor of that class**, with the same name. When an argument is an object, its value is a nested item with its own `class` field.
+Each item of the configuration names a Python class in its `class` field. **Every other field is an argument of the constructor of that class**, with the same name as the field. When an argument is an object, its value is a nested item with its own `class` field.
 ```
 
 Writing a configuration is therefore the same as writing the Python code that creates the objects, in YAML (or JSON) instead of Python.
