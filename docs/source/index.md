@@ -17,7 +17,9 @@ The features include, among others:
 - Automatic generation of metadata and a standardized format for measurement data.
 - A set of standard applications and a framework for developing new applications.
 
+```{tip}
 Read [What is pyAML?](explanation/about.md) to learn more about the motivation and goals of the project.
+```
 
 ```{toctree}
 :hidden:
