@@ -20,7 +20,6 @@ PyAML builds on this idea, but is implemented as a modern, Python-based, and ext
 
 - **Real and virtual machines**: The same interface can be used with the real accelerator, an external digital twin, or an internal simulator, allowing physics applications to work independently of how the accelerator is represented.
 
-
 ## Goals
 
 The collaboration has identified the following key features for pyAML. They are the goals of the project: some of them are already available, others are still being developed.
