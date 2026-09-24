@@ -66,7 +66,7 @@ Consequences of this rule:
 
 Since fields are constructor arguments, the documentation of a class tells you what to write in the configuration. You can:
 
-- read the [API documentation](https://pyaml.readthedocs.io/en/stable/) of the class,
+- read the [API documentation](./../reference/index.md) of the class,
 - use `help()` in Python, which shows the signature of the constructor:
 
   ```python
