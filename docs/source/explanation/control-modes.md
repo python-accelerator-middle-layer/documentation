@@ -5,7 +5,7 @@ A control mode is one way of accessing the accelerator. pyAML is built so that t
 - Core interactions work identically in all control modes.
 - All configured control modes are available at all times, and can be used at the same time in one script.
 - All control modes are defined in the configuration.
-- Standard measurements and high-level applications behave in the same way in every control mode.
+- Standard measurements and high-level applications behave in a similar way in every control mode.
 
 ## Available Control Modes
 
