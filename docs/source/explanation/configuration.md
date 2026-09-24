@@ -62,23 +62,6 @@ Consequences of this rule:
 - **Optional arguments are optional fields.** Arguments with a default value can be left out.
 - **Any class can be used.** Nothing is specific to pyAML classes: a facility-specific class from your own package can be used in the same way, as long as it can be imported.
 
-### Finding the Accepted Fields
-
-Since fields are constructor arguments, the documentation of a class tells you what to write in the configuration. You can:
-
-- Read the [API documentation](./../reference/index.md) of the class,
-- Use `help()` in Python, which shows the signature of the constructor:
-
-  ```python
-  from pyaml.magnet.quadrupole import Quadrupole
-  help(Quadrupole)
-  # Quadrupole(name: str, model: MagnetModel | None = None,
-  #            lattice_names: str | None = None, description: str | None = None)
-  ```
-
-- Use the schema registry, whose `describe()` method lists the fields of a registered class with their types. See [Use the Schema Registry](../how-to/configuration/use-schema-registry.ipynb).
-- Use a JSON Schema in an external tool. See [JSON Schema Tools](../how-to/configuration/create-configuration.md#tools-that-help-writing-the-configuration).
-
 ## Configuration Items
 
 Each configurable item is represented by a mapping which describes the attributes and values needed to construct one Python object. The field `class` (or its alias `class_path`) identifies the type to construct. It should be written as a fully qualified Python class path, consisting of the module and class name. For example:
