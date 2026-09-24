@@ -4,13 +4,22 @@ The Python Accelerator Middle Layer (pyAML) is an ecosystem of Python packages t
 
 ## Why a Middle Layer?
 
-Many accelerator facilities have for years relied on a *Middle Layer*, the MATLAB Middle Layer (MML) being the best-known example. A middle layer gives physicists a uniform, physics-oriented way to access a machine: they read "the orbit at all BPMs" or set "the strength of quadrupole QF1" without having to know which control system variable holds that value, which units it is in, or how a current is converted into a magnetic strength.
+Many accelerator facilities rely on a *Middle Layer*, with the [MATLAB Middle Layer (MML)](https://github.com/atcollab/MML) being a well-known example at synchrotron light sources.
 
-pyAML carries that idea forward with a few important changes:
+A middle layer provides a physics-oriented interface to a particle accelerator. It represents the machine in terms of familiar accelerator concepts, such as magnets, BPMs, and RF cavities, while hiding details such as control-system variables, hardware interfaces, units, and conversions from users.
 
-- **Python instead of MATLAB.** Python is open, free and widely used in the scientific community, and it gives access to a large ecosystem of scientific and machine-learning tools.
-- **Shared between facilities.** Measurement and correction tools written for pyAML (orbit correction, tune correction, response matrices, etc.) should run at any facility that has configured pyAML, instead of being rewritten at each laboratory.
-- **Simulation as a first-class citizen.** The same script can act on the real machine or on a simulated one. Tools can then be developed and tested without using expensive and limited beam time.
+The same interface can be used to interact with either the real accelerator, where values are read from and written to the control system, or a simulated accelerator, where they are obtained from and passed to a simulation code.
+
+PyAML builds on this idea, but is implemented as a modern, Python-based, and extensible framework. Its key characteristics are:
+
+ - **Python-native**: pyAML integrates naturally with the Python scientific ecosystem and the growing number of accelerator-physics tools available in Python.
+
+- **Modular and extensible**: Control systems, simulation codes, and physics applications are connected through well-defined interfaces, allowing new implementations to be added without changing the applications that use them.
+
+- **Configuration-driven**: Accelerator-specific information is kept separate from application code, allowing the same software to be configured for different machines and facilities.
+
+- **Real and virtual machines**: The same interface can be used with the real accelerator, an external digital twin, or an internal simulator, allowing physics applications to work independently of how the accelerator is represented.
+
 
 ## Goals
 
