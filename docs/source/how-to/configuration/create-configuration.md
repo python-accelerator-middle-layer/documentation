@@ -48,9 +48,11 @@ For example:
 
 Parameters with a default value is optional and can be left out of the configuration if you wish.
 
-## Write the Configuration File
+## Write Configuration as a Text File
 
-Create a file, for example `accelerator.yaml`, with any text editor. The steps below build a small but complete configuration, using the names of the [test lattice](../../tutorials/functionality/01_create_accelerator).
+Here an example is shown for how to create the configuration in a YAML file. The steps are similar if using JSON. The steps below build a small but complete configuration, using the names of the [test lattice](../../tutorials/functionality/01_create_accelerator).
+
+Create a file, for example `accelerator.yaml`, with any text editor. If you want the editor to suggest the fields, you can use VS Code together with a JSON Schema. See [Use JSON Schema in VS Code](../configuration/use-vscode-json-schema.md) for instructions.
 
 ### 1. The Accelerator
 
