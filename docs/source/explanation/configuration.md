@@ -66,8 +66,8 @@ Consequences of this rule:
 
 Since fields are constructor arguments, the documentation of a class tells you what to write in the configuration. You can:
 
-- read the [API documentation](./../reference/index.md) of the class,
-- use `help()` in Python, which shows the signature of the constructor:
+- Read the [API documentation](./../reference/index.md) of the class,
+- Use `help()` in Python, which shows the signature of the constructor:
 
   ```python
   from pyaml.magnet.quadrupole import Quadrupole
@@ -76,7 +76,8 @@ Since fields are constructor arguments, the documentation of a class tells you w
   #            lattice_names: str | None = None, description: str | None = None)
   ```
 
-- use the schema registry, whose `describe()` method lists the fields of a registered class with their types. See [Use the Schema Registry](../how-to/configuration/use-schema-registry.ipynb).
+- Use the schema registry, whose `describe()` method lists the fields of a registered class with their types. See [Use the Schema Registry](../how-to/configuration/use-schema-registry.ipynb).
+- Use a JSON Schema in an external tool. See [JSON Schema Tools](../how-to/configuration/create-configuration.md#tools-that-help-writing-the-configuration).
 
 ## Configuration Items
 
