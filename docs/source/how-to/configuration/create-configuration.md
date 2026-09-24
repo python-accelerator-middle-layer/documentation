@@ -1,6 +1,6 @@
 # Create and Load Configuration
 
-This guide shows how to write a pyAML configuration as a text file and load it into an `Accelerator`. It gives recommendations for how to write it and list tools that are available to help.
+This guide shows how to write a pyAML configuration and load it into an `Accelerator`. It gives recommendations for how to write it and list tools that are available to help.
 
 ```{tip}
 Read [Configuration Structure and Syntax](../../explanation/configuration) which explains the concepts and ideas behind the configuration before you start.
