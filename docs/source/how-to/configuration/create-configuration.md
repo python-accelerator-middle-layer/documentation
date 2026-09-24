@@ -16,11 +16,14 @@ Each item of the configuration names a Python class in its `class` field. **Ever
 
 Writing and loading the configuration is the equivalent of writing the Python code that creates the objects yourself. The configuration just allows pyAML to create the objects for you.
 
-## Find the Fields of a Class
+## Finding the Accepted Fields
 
-Before writing an item, look up the constructor arguments of its class. Any of these works:
+Before writing an item, look up the constructor parameters of the class you want pyAML to build an object of. This can be done in several ways:
 
-- `help()` in Python, which shows the constructor signature and describes each argument:
+- Read the [API documentation](./../reference/index.md) of the class
+- Use `help()` in Python since this shows the signature of the constructor and description of each parameter
+
+For example:
 
   ```python
   from pyaml.bpm.bpm import BPM
@@ -39,10 +42,10 @@ Before writing an item, look up the constructor arguments of its class. Any of t
   #  |  ...
   ```
 
-- the [API documentation](https://pyaml.readthedocs.io/en/stable/) of the class,
-- the `describe()` method of the schema in the [schema registry](./use-schema-registry.ipynb).
+- Use the schema registry. The `describe()` method lists the fields of a registered class with their types. See [Use the Schema Registry](../how-to/configuration/use-schema-registry.ipynb).
+- Use a JSON Schema in an external tool. See [JSON Schema Tools](../how-to/configuration/create-configuration.md#tools-that-help-writing-the-configuration).
 
-Arguments without a default value (here `name`) are required fields; the others can be left out.
+Parameters with a default value is optional and can be left out of the configuration if you wish.
 
 ## Write the Configuration File
 
