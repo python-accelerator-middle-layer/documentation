@@ -43,5 +43,6 @@ virtual-accelerator/apptainer
 :caption: Contribute
 
 contribute/contribute
-contribute/release.md
+contribute/documentation
+contribute/release
 ```
