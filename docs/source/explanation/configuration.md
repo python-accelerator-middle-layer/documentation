@@ -28,12 +28,8 @@ The whole configuration follows a single rule:
 Each configuration item names a Python class in its `class` field. **Every other field of the item is an argument to that class's constructor**, with the same name as the field and the value to be passed to the constructor.
 ```
 
-When pyAML reads an item, it imports the class given by `class` and calls it with the remaining fields as keyword arguments. The configuration below and the Python code next to it build exactly the same object:
+When pyAML reads an item, it imports the class given by `class` and calls it with the remaining fields as keyword arguments. The YAML configuration and Python code below build equivalent objects:
 
-`````{grid} 2
-:gutter: 2
-
-````{grid-item}
 **Configuration**
 
 ```yaml
@@ -44,9 +40,7 @@ model:
   unit: 1/m
   physics: AN01-AR/EM-QP/QF.01/magnetic_strength
 ```
-````
 
-````{grid-item}
 **Python**
 
 ```python
@@ -61,8 +55,6 @@ Quadrupole(
     ),
 )
 ```
-````
-`````
 
 Consequences of this rule:
 
