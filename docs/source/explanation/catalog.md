@@ -61,7 +61,7 @@ controls:
     catalog: fodo_1gev_6d_pyaml_catalogs-oa.yaml
 ```
 
-Example of a static catalog file for `pyaml-cs-oa`, with one entry:
+Example of a static catalog file for `pyaml-cs-oa` with a single entry:
 
 ```yaml
 class: pyaml_cs_oa.static_catalog.StaticCatalog
@@ -74,6 +74,9 @@ entries:
       unit: 1/m
 ```
 
-The same catalog for `tango-pyaml` uses the classes of that package (`tango.pyaml.static_catalog.StaticCatalog`, `tango.pyaml.static_catalog_entry.StaticCatalogEntry` and `tango.pyaml.attribute.Attribute`).
+The static catalog for `tango-pyaml` uses the corresponding classes for that package:
+- `tango.pyaml.static_catalog.StaticCatalog`
+- `tango.pyaml.static_catalog_entry.StaticCatalogEntry`
+- `tango.pyaml.attribute.Attribute`
 
 This format follows the same syntax as for the rest of the pyAML configuration since during the loading process the file is read and the content added to the rest of the pyAML configuration.
