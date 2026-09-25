@@ -234,7 +234,7 @@ model:
 
 ## Load the Configuration
 
-Set the configuration root, which is the directory used to resolve relative paths, then load the file with `Accelerator.load()`:
+Set the [configuration root](../../explanation/configuration.md#configuration-root), which is the directory used to resolve relative paths, then load the file with `Accelerator.load()`.
 
 ```python
 from pyaml.configuration import ROOT
@@ -246,9 +246,9 @@ accelerator = Accelerator.load("accelerator.yaml")
 accelerator.design.magnets.get("Quadrupoles").strengths.get()
 ```
 
-If the control-system bindings are not installed or you only want to use the simulator, add `ignore_external=True`. The `controls` section is then skipped.
+If the control-system bindings are not installed or you only want to use the simulator, add `ignore_external=True` and the `controls` section is skipped without having to remove it from the configuration.
 
-The configuration can also be given as a nested dictionary with `Accelerator.from_dict()`, following the same rule:
+The configuration can also be loaded as a nested dictionary with `Accelerator.from_dict()`. This also allows to write the configuration directly as a dictionary instead of a text file if you prefer.
 
 ```python
 import yaml
