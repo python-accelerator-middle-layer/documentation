@@ -30,7 +30,9 @@ sd_fontawesome_source = "cdn"
 
 myst_enable_extensions = [
     "attrs_inline",
+    "deflist",
 ]
+myst_heading_anchors = 3
 
 sphinx_gallery_conf = {
     "examples_dirs": ["../tutorials"],

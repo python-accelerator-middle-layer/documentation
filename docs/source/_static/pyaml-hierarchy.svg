@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 520" width="860" height="520" font-family="Helvetica, Arial, sans-serif" font-size="14">
+  <title>pyAML object hierarchy</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a8f98"/>
+    </marker>
+    <style>
+      .box { stroke: #5b6270; stroke-width: 1.2; rx: 8; }
+      .acc { fill: #d6e4ff; }
+      .mode { fill: #ffe7c2; }
+      .arr { fill: #dff3e3; }
+      .el { fill: #e8e1fb; }
+      .att { fill: #fbe0e6; }
+      .be { fill: #e4e7ec; }
+      .t { fill: #1c2230; }
+      .b { font-weight: bold; }
+      .m { font-family: Menlo, Consolas, monospace; font-size: 12.5px; }
+      .lbl { fill: #8a8f98; font-size: 12.5px; font-style: italic; }
+      .ln { stroke: #8a8f98; stroke-width: 1.4; fill: none; marker-end: url(#arrow); }
+      .dash { stroke-dasharray: 5 4; }
+    </style>
+  </defs>
+
+  <!-- Accelerator -->
+  <rect class="box acc" x="280" y="12" width="300" height="56"/>
+  <text class="t b" x="430" y="36" text-anchor="middle">Accelerator</text>
+  <text class="t m" x="430" y="56" text-anchor="middle">Accelerator.load("config.yaml")</text>
+
+  <!-- Modes -->
+  <line class="ln" x1="380" y1="68" x2="215" y2="106"/>
+  <line class="ln" x1="480" y1="68" x2="645" y2="106"/>
+  <text class="lbl" x="430" y="96" text-anchor="middle">control modes</text>
+
+  <rect class="box mode" x="40" y="108" width="350" height="56"/>
+  <text class="t b" x="215" y="132" text-anchor="middle">live — ControlSystem</text>
+  <text class="t m" x="215" y="152" text-anchor="middle">accelerator.live</text>
+
+  <rect class="box mode" x="470" y="108" width="350" height="56"/>
+  <text class="t b" x="645" y="132" text-anchor="middle">design — Simulator</text>
+  <text class="t m" x="645" y="152" text-anchor="middle">accelerator.design</text>
+
+  <!-- Content of a mode (same for each mode) -->
+  <rect x="20" y="186" width="820" height="222" fill="none" stroke="#8a8f98" stroke-width="1" stroke-dasharray="6 4" rx="10"/>
+  <text class="lbl" x="34" y="206">identical content in every control mode</text>
+
+  <rect class="box arr" x="40" y="218" width="250" height="68"/>
+  <text class="t b" x="165" y="241" text-anchor="middle">Arrays</text>
+  <text class="t m" x="165" y="260" text-anchor="middle">magnets.get("QForTune")</text>
+  <text class="t m" x="165" y="277" text-anchor="middle">bpms.get("BPM")</text>
+
+  <rect class="box el" x="305" y="218" width="250" height="68"/>
+  <text class="t b" x="430" y="241" text-anchor="middle">Elements</text>
+  <text class="t m" x="430" y="260" text-anchor="middle">magnet.get("QF_001")</text>
+  <text class="t m" x="430" y="277" text-anchor="middle">bpm.get("BPM_001")</text>
+
+  <rect class="box el" x="570" y="218" width="250" height="68"/>
+  <text class="t b" x="695" y="241" text-anchor="middle">Tuning tools</text>
+  <text class="t m" x="695" y="260" text-anchor="middle">tune, orbit,</text>
+  <text class="t m" x="695" y="277" text-anchor="middle">chromaticity, ...</text>
+
+  <line class="ln dash" x1="290" y1="252" x2="303" y2="252"/>
+  <line class="ln dash" x1="570" y1="252" x2="557" y2="252"/>
+
+  <!-- Attributes -->
+  <line class="ln" x1="430" y1="286" x2="430" y2="324"/>
+  <line class="ln" x1="165" y1="286" x2="330" y2="324"/>
+  <rect class="box att" x="180" y="326" width="500" height="76"/>
+  <text class="t b" x="430" y="349" text-anchor="middle">Attributes</text>
+  <text class="t m" x="430" y="369" text-anchor="middle">.strength (physics units) · .hardware (hardware units)</text>
+  <text class="t m" x="430" y="388" text-anchor="middle">.positions · .get() · .set(value)</text>
+
+  <!-- Backends -->
+  <line class="ln" x1="300" y1="402" x2="215" y2="436"/>
+  <line class="ln" x1="560" y1="402" x2="645" y2="436"/>
+  <text class="lbl" x="430" y="427" text-anchor="middle">backends</text>
+
+  <rect class="box be" x="40" y="438" width="350" height="68"/>
+  <text class="t b" x="215" y="461" text-anchor="middle">Control system (TANGO, EPICS, ...)</text>
+  <text class="t m" x="215" y="480" text-anchor="middle">tango-pyaml, pyaml-cs-oa</text>
+  <text class="t m" x="215" y="497" text-anchor="middle">DeviceAccess + catalog</text>
+
+  <rect class="box be" x="470" y="438" width="350" height="68"/>
+  <text class="t b" x="645" y="461" text-anchor="middle">Simulation code</text>
+  <text class="t m" x="645" y="480" text-anchor="middle">pyAT lattice</text>
+  <text class="t m" x="645" y="497" text-anchor="middle">(lattice elements)</text>
+</svg>

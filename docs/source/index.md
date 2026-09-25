@@ -6,6 +6,8 @@ html_theme.sidebar_secondary.remove: true
 
 Python Accelerator Middle Layer (pyAML) is a joint technology platform for design, commissioning, and operation of particle accelerators.
 
+It is developed by a collaboration of accelerator facilities to give physicists a common, physics-oriented way to access their machines, whether real or simulated, and to share measurement and correction tools between laboratories.
+
 The features include, among others:
 
 - A control system-agnostic interface to interact with the accelerator.
@@ -15,6 +17,10 @@ The features include, among others:
 - Automatic generation of metadata and a standardized format for measurement data.
 - A set of standard applications and a framework for developing new applications.
 
+```{tip}
+Read [What is pyAML?](explanation/about.md) to learn more about the motivation and goals of the project.
+```
+
 ```{toctree}
 :hidden:
 :maxdepth: 1
@@ -23,6 +29,7 @@ Tutorials <tutorials/index>
 how-to/index
 explanation/index
 reference/index
+glossary
 ```
 
 <div style="margin-top: 3rem;"></div>
