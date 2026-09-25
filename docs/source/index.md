@@ -29,6 +29,7 @@ Tutorials <tutorials/index>
 how-to/index
 explanation/index
 reference/index
+glossary
 ```
 
 <div style="margin-top: 3rem;"></div>
