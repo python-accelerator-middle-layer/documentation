@@ -25,15 +25,17 @@ The syntax has been chosen to allow configuration and construction of objects fo
 The whole configuration follows a single rule:
 
 ```{important}
-Each configuration item names a Python class in its `class` field. **Every other field of the item is an argument of that class's constructor**, with the same name.
+Each configuration item names a Python class in its `class` field. **Every other field of the item is an argument to that class's constructor**, with the same name as the field and the value to be passed to the constructor.
 ```
 
-When pyAML reads an item, it imports the class given by `class` and calls it with the remaining fields as keyword arguments. The configuration below and the Python code next to it build exactly the same object:
+The `class` should be written as a fully qualified Python class path, consisting of the module and class name in the format `package.module.Class`.
 
-`````{grid} 2
-:gutter: 2
+```{note}
+Since `class` is a reserved name in Python, the attribute is called `class_path` in the source code. That is also an accepted alias to use in the configuration.
+```
 
-````{grid-item}
+When pyAML reads an item, it imports the class given by `class` and calls it with the remaining fields as keyword arguments. The YAML configuration and Python code below build equivalent objects:
+
 **Configuration**
 
 ```yaml
@@ -44,9 +46,7 @@ model:
   unit: 1/m
   physics: AN01-AR/EM-QP/QF.01/magnetic_strength
 ```
-````
 
-````{grid-item}
 **Python**
 
 ```python
@@ -61,52 +61,12 @@ Quadrupole(
     ),
 )
 ```
-````
-`````
 
 Consequences of this rule:
 
 - **Nested objects are nested items.** If an argument expects an object (here `model` expects a magnet model), the field contains another item with its own `class` field. Lists of objects (such as `devices` or `simulators` of the `Accelerator`) are lists of items.
 - **Optional arguments are optional fields.** Arguments with a default value can be left out.
-- **Unknown fields are rejected.** A field which is not an argument of the constructor, for example a misspelled one, raises an error when the configuration is loaded.
 - **Any class can be used.** Nothing is specific to pyAML classes: a facility-specific class from your own package can be used in the same way, as long as it can be imported.
-
-### Finding the Accepted Fields
-
-Since fields are constructor arguments, the documentation of a class tells you what to write in the configuration. You can:
-
-- read the [API documentation](https://pyaml.readthedocs.io/en/stable/) of the class,
-- use `help()` in Python, which shows the signature of the constructor:
-
-  ```python
-  from pyaml.magnet.quadrupole import Quadrupole
-  help(Quadrupole)
-  # Quadrupole(name: str, model: MagnetModel | None = None,
-  #            lattice_names: str | None = None, description: str | None = None)
-  ```
-
-- use the schema registry, whose `describe()` method lists the fields of a registered class with their types. See [Use the Schema Registry](../how-to/configuration/use-schema-registry.ipynb).
-
-## Configuration Items
-
-Each configurable item is represented by a mapping which describes the attributes and values needed to construct one Python object. The field `class` (or its alias `class_path`) identifies the type to construct. It should be written as a fully qualified Python class path, consisting of the module and class name. For example:
-
-```yaml
-class: pyaml.magnet.quadrupole.Quadrupole
-```
-
-When pyAML reads the configuration, it uses this path to select the class and passes the remaining configuration fields to the constructor of the class.
-
-An object can contain other configurable objects. The nested objects follow the same principle: each has its own `class` field and the values needed to construct it. For example:
-
-```yaml
-class: pyaml.magnet.quadrupole.Quadrupole
-name: QF_001
-model:
-  class: pyaml.magnet.identity_model.IdentityMagnetModel
-  unit: 1/m
-  physics: AN01-AR/EM-QP/QF.01/magnetic_strength
-```
 
 ## Separation between Configuration and Source Code
 
