@@ -7,6 +7,10 @@ Read [Configuration Structure and Syntax](../../explanation/configuration) which
 ```
 The configuration can be written as a text file in YAML or JSON or as a dictionary.
 
+```{note}
+Tools are available to help writing the configuration. See [Tools That Help Writing the Configuration](../configuration/create-configuration.md#tools-that-help-writing-the-configuration) for the options.
+```
+
 ## The Rule to Remember
 
 The configuration consists of a set of items which tells pyAML which objects to build when loading the configuration.
@@ -44,7 +48,7 @@ For example:
   ```
 
 - Use the schema registry. The `describe()` method lists the fields of a registered class with their types. See [Use the Schema Registry](../how-to/configuration/use-schema-registry.ipynb).
-- Use a JSON Schema in an external tool. See [JSON Schema Tools](../how-to/configuration/create-configuration.md#tools-that-help-writing-the-configuration).
+- Use a JSON Schema in an external tool. See [Tools That Help Writing the Configuration](../configuration/create-configuration.md#tools-that-help-writing-the-configuration) for the options.
 
 Parameters with a default value is optional and can be left out of the configuration if you wish.
 
@@ -278,12 +282,18 @@ The configuration can also be validated without loading it, which is useful if y
 
 ## Tools That Help Writing the Configuration
 
-Writing the file by hand is often the simplest way to start, but tools based on a [JSON Schema](../../explanation/schema_and_validation.md) can suggest the available fields and check their types while you write:
+There are tools available to help to write and modify the configuration. They can suggest the fields and check their types while you write. The tools are under development and testing so new or other tools might be available in the future based on user feedback.
+
+Some of the tools are based on a [JSON Schema](https://json-schema.org). For information about JSON Schemas and how to generate them, see [Configuration Schemas and Validation](../../explanation/schema_and_validation.md) and [Generate JSON Schemas](./generate-json-schema.ipynb).
+
+Currently these tools are available:
+
+- [Use ConfigurationSchema](./use-configuration-schema.ipynb) objects to create the configuration in Python and export it as a dictionary or text file. This allows to program the configuration.
 
 - [Use a JSON Schema in VS Code](./use-vscode-json-schema.md)
+
 - [Use the MetaConfigurator](./use-meta-configurator.md), a form-based editor in the browser
-- [Use ConfigurationSchema](./use-configuration-schema.ipynb) objects to create the configuration in Python and export it as a dictionary or text file
 
-AI coding assistants can also help: supply for example a lattice file, a description of the naming conventions of your control system, and the JSON Schema of the pyAML configuration.
-
-For information about JSON Schemas and how to generate them, see [Configuration Schemas and Validation](../../explanation/schema_and_validation.md) and [Generate JSON Schemas](./generate-json-schema.ipynb).
+```{tip}
+AI coding assistants can also help: supply for example a lattice file, a description of the naming conventions of your control system, and the JSON Schema of the pyAML configuration and ask it to write the configuration for you.
+```
