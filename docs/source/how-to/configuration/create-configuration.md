@@ -214,7 +214,7 @@ Values can also come from environment variables with `${env:NAME}`. See [Resolve
 
 ## Use Your Own Classes
 
-The rule is not limited to pyAML classes. Any class that can be imported can be used in the configuration, for example a magnet model specific to your facility:
+The configuration is not limited to pyAML classes. Any class that can be imported can be used in the configuration, for example a magnet model specific to your facility:
 
 ```python
 # my_facility/models.py
