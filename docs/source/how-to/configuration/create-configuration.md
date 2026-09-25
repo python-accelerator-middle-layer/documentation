@@ -263,7 +263,9 @@ See the API documentation for the [Accelerator](https://pyaml.readthedocs.io/en/
 
 ## Validate the Configuration
 
-Each item is checked when it is created: a missing required field or an unknown field raises a `PyAMLConfigException` naming the class and the field. The whole configuration can also be validated before anything is created, which gives all errors at once:
+If the classes you use have enabled validation during object creation (this is the default for all common pyAML classes), the configuration will be validated as part of creating the objects: a missing required field or an unknown field raises a `PyAMLConfigException` naming the class and the field.
+
+The whole configuration can also be validated before anything is created.
 
 ```python
 from pyaml.validation import SchemaRegistry
