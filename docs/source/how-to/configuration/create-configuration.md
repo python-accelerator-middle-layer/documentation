@@ -93,7 +93,9 @@ If you only want to use the simulator, you can leave out `controls` entirely.
 
 ### 3. The Devices
 
-Add the elements of the machine in `devices`. For a magnet, the `model` argument is an object (the magnet model, which also handles the unit conversion), so it is written as a nested item:
+Add the elements of the machine in `devices`. For a magnet, the `model` argument is an object (the magnet model, which also handles the unit conversion), so it is written as a nested item.
+
+The strings given to `physics`, `x_pos` and `y_pos` are keys looked up in the catalog of the control system.
 
 ```yaml
 devices:
@@ -115,7 +117,7 @@ devices:
     y_pos: AN01-AR/DG-EPOS/BPM.01/y
 ```
 
-By default, the `name` of an element is also the name of the element in the lattice of the simulator. Use `lattice_names` if they differ. The strings given to `physics`, `x_pos` and `y_pos` are keys looked up in the catalog of the control system.
+By default, the `name` of an element is also the name of the element in the lattice of the simulator. If you want to use a different name in pyAML, use `lattice_names` to map between pyAML and the lattice.
 
 ### 4. The Arrays
 
@@ -140,8 +142,8 @@ Putting it all together:
 
 ```yaml
 class: pyaml.accelerator.Accelerator
-facility: My facility
-machine: sr
+facility: my_facility
+machine: storage_ring
 energy: 1.0e9
 simulators:
   - class: pyaml.lattice.simulator.Simulator
