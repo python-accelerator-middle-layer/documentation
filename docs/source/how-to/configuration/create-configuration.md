@@ -67,9 +67,9 @@ energy: 1.0e9
 
 ### 2. The Control Modes
 
-Add the control modes as lists in `simulators` and `controls`. Their `name` is also the name used to access them (`accelerator.design`, `accelerator.live`).
+Add the control modes as lists in `simulators` and `controls`. Their `name` is also the name used to access them, for example `accelerator.design`, `accelerator.live` etc.
 
-A simulator needs the path to a lattice file. Use `${path:...}` so that the path is resolved relative to the [configuration root](../../explanation/configuration.md#configuration-root) and the lattice is not loaded as a configuration file:
+A simulator needs the path to a lattice file. All [formats that can be loaded by pyAT](https://atcollab.github.io/at/p/api/at.load.html#module-at.load) works. If you use the JSON format, you need to use the `${path:...}` [resolver](../../explanation/configuration.md#resolvers) to avoid the lattice being loaded as if it was a configuration file.
 
 ```yaml
 simulators:
@@ -78,31 +78,18 @@ simulators:
     lattice: ${path:lattice.json}
 ```
 
-A control system is given by the class of the bindings you use. Its arguments depend on the bindings, for example for `pyaml-cs-oa`:
+A control system is given by the class of the bindings you use. The arguments depend on the bindings and catalog type you decide to use. The catalog describes how the keys used by the devices map to control-system signals. See [Control System Catalogs](../../explanation/catalog.md) for the different types of catalogs.
+
+For example for `pyaml-cs-oa` using a dynamic catalog for TANGO:
 
 ```yaml
 controls:
   - class: pyaml_cs_oa.controlsystem.OphydAsyncControlSystem
     name: live
     backend: tango
-    catalog: catalog.yaml
 ```
 
-The catalog describes how the keys used by the devices map to control-system signals. It follows exactly the same rule. A static catalog for `pyaml-cs-oa` looks like this (one entry per key):
-
-```yaml
-class: pyaml_cs_oa.static_catalog.StaticCatalog
-entries:
-  - class: pyaml_cs_oa.static_catalog_entry.StaticCatalogEntry
-    key: AN01-AR/EM-QP/QF.01/magnetic_strength
-    device:
-      class: pyaml_cs_oa.tangoAtt.TangoAtt
-      attribute: AN01-AR/EM-QP/QF.01/magnetic_strength
-      unit: 1/m
-  # ... one entry for each key used in the configuration
-```
-
-See [Control System Catalogs](../../explanation/catalog.md) for the different types of catalogs. If you only want to use the simulator, you can leave out `controls` entirely.
+If you only want to use the simulator, you can leave out `controls` entirely.
 
 ### 3. The Devices
 
