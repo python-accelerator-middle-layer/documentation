@@ -66,7 +66,7 @@ It does not contain any code: the hands-on part starts in the next tutorial.
 #   the BPMs.
 # - **Attribute**: a value of an element that can be read with ``get()`` and written
 #   with ``set()``, such as the ``strength`` of a magnet.
-# - **Configuration**: a YAML or JSON file describing all of the above. Each item of the
+# - **Configuration**: a structure (most commonly a YAML or JSON file) describing all of the above. Each item of the
 #   configuration names a Python class with its ``class`` field, and **each other field is an
 #   argument of that class's constructor**. This rule is explored in the first tutorial.
 #
