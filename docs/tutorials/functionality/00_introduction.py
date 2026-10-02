@@ -61,7 +61,7 @@ It does not contain any code: the hands-on part starts in the next tutorial.
 #   a control system and ``accelerator.design`` talks
 #   to a simulation of the machine made with `pyAT <https://atcollab.github.io/at/p/index.html>`_.
 #   Both provide exactly the same interface.
-# - **Element**: one object of the machine, such as a magnet, a BPM or the RF plant.
+# - **Element**: one object of the machine, such as a magnet, a BPM or a RF cavity.
 # - **Array**: a named group of elements which can be read or set in one call, such as all
 #   the BPMs.
 # - **Attribute**: a value of an element that can be read with ``get()`` and written
