@@ -28,7 +28,7 @@ The modes are declared in the configuration: control systems in `controls` and s
 ```yaml
 class: pyaml.accelerator.Accelerator
 facility: my_facility
-machine: accelerator
+machine: storage_ring
 energy: 1.0e9
 simulators:
   - class: pyaml.lattice.simulator.Simulator
