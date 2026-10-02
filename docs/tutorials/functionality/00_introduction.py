@@ -72,7 +72,7 @@ It does not contain any code: the hands-on part starts in the next tutorial.
 #
 # See :doc:`pyAML Structure <../../explanation/architecture>` and
 # :doc:`Control Modes <../../explanation/control-modes>` for more details, and the
-# :doc:`Glossary <../../explanation/glossary>` for the definitions of the terms used in pyAML.
+# :doc:`Glossary <../../glossary>` for the definitions of the terms used in pyAML.
 
 # %%
 # How the Tutorials Work
