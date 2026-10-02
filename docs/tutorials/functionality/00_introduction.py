@@ -57,31 +57,31 @@ It does not contain any code: the hands-on part starts in the next tutorial.
 #
 # - **Accelerator**: the top-level object describing one machine. It is created from a
 #   configuration.
-# - **Control mode**: one way of accessing the accelerator. ``accelerator.live`` talks to the
-#   control system (the real machine or a virtual accelerator), ``accelerator.design`` talks
+# - **Control mode**: one way of accessing the accelerator. In the figure above ``accelerator.live`` talks to the
+#   a control system and ``accelerator.design`` talks
 #   to a simulation of the machine made with `pyAT <https://atcollab.github.io/at/p/index.html>`_.
 #   Both provide exactly the same interface.
-# - **Element**: one object of the machine, such as a magnet, a BPM or the RF plant.
+# - **Element**: one object of the machine, such as a magnet, a BPM or a RF cavity.
 # - **Array**: a named group of elements which can be read or set in one call, such as all
 #   the BPMs.
 # - **Attribute**: a value of an element that can be read with ``get()`` and written
 #   with ``set()``, such as the ``strength`` of a magnet.
-# - **Configuration**: a YAML or JSON file describing all of the above. Each item of the
+# - **Configuration**: a structure (most commonly a YAML or JSON file) describing all of the above. Each item of the
 #   configuration names a Python class with its ``class`` field, and **each other field is an
 #   argument of that class's constructor**. This rule is explored in the first tutorial.
 #
 # See :doc:`pyAML Structure <../../explanation/architecture>` and
 # :doc:`Control Modes <../../explanation/control-modes>` for more details, and the
-# :doc:`Glossary <../../explanation/glossary>` for the definitions of the terms used in pyAML.
+# :doc:`Glossary <../../glossary>` for the definitions of the terms used in pyAML.
 
 # %%
 # How the Tutorials Work
 # ----------------------
 #
-# **Running the tutorials.** Each tutorial can be run in the cloud with
-# `Binder <https://mybinder.org>`_ using the launcher on its page, with nothing to install,
-# or downloaded and run on your own computer, as a Jupyter notebook or a Python script
-# (see below).
+# **Running the tutorials.** Each tutorial can be run in the cloud without requiring
+# to install or download anything by using the `Binder <https://mybinder.org>`_ launcher
+# on the tutorial page or as a Jupyter notebook or a Python script on your own computer 
+# (see below for instructions).
 #
 # **The test machine.** The tutorials use a small test storage ring, with its lattice and
 # ready-made pyAML configurations, provided by the ``pyaml-test-lattice`` package. It is
@@ -103,54 +103,42 @@ It does not contain any code: the hands-on part starts in the next tutorial.
 #
 # You need Python 3.11 or newer. Always install in a virtual environment, to avoid breaking
 # your Python installation (see :doc:`New to Python <../../how-to/getting-started/python-basics>`
-# if you are not familiar with virtual environments). Then install:
+# if you are not familiar with virtual environments). Then do:
+# 
+# 1. Install the requirements for the tutorials
 #
-# .. code-block:: bash
+#    .. code-block:: bash
 #
-#    pip install "accelerator-middle-layer[cs-oa-tango]" pyaml-test-lattice jupyterlab
+#       pip install -r https://raw.githubusercontent.com/python-accelerator-middle-layer/documentation/main/binder/requirements.txt
 #
-# This installs:
+# 2. [Optional] If you want to run as notebooks, install JupyterLab
 #
-# - ``accelerator-middle-layer``: the ``pyaml`` core package. It also installs pyAT, used by
-#   the ``design`` control mode, together with numpy and matplotlib.
-# - ``[cs-oa-tango]``: the ``pyaml-cs-oa`` control-system bindings for TANGO. The ready-made
-#   configurations of the test machine declare a ``live`` control mode using these bindings,
-#   so they are needed to load them, even if you only use the ``design`` control mode.
-# - ``pyaml-test-lattice``: the test machine, with its lattice and pyAML configurations.
-# - ``jupyterlab``: to open the tutorials as notebooks. It is not needed to run them as
-#   Python scripts.
+#    .. code-block:: bash
 #
-# The other control-system bindings (``cs-oa-epics``, ``tango-pyaml``) are only needed to
-# connect to your own control system, see
-# :doc:`User Installation <../../how-to/installation/user-installation>`. To get exactly the
-# same environment as on Binder, install the
-# `Binder requirements <https://github.com/python-accelerator-middle-layer/documentation/blob/main/binder/requirements.txt>`_
-# instead: ``pip install -r binder/requirements.txt`` from a clone of the documentation
-# repository.
+#       pip install jupyterlab
 #
-# Finally, download a tutorial as a notebook or a Python script with the download links in
-# the right sidebar of its page, and run it with ``jupyter lab`` or ``python``.
+# Finally, download a tutorial as a notebook or a Python script using the download link in
+# the right sidebar of the tutorial's page, and run it with ``jupyter lab`` or ``python``.
+# You can also download all tutorials in one go on the :doc:`Tutorials <../index>` main page.
 
 # %%
 # Where to Go Next
 # ----------------
+# 
+# There are two type of tutorials:
 #
-# The tutorials are designed to be followed in this order:
+# 1. **Functionality**: These cover the functionality of pyAML.
 #
-# 1. :doc:`Create an Accelerator <01_create_accelerator>`: create an accelerator
-#    interactively and from a configuration file, and learn how the configuration maps to
-#    Python classes.
-# 2. :doc:`Inspect an Accelerator <02_inspect_accelerator>`: explore what a complete
-#    accelerator configuration contains.
-# 3. The **use cases**, which apply pyAML to real tasks:
-#    :doc:`tune correction <../use_cases/tune-correction>`,
-#    :doc:`orbit correction <../use_cases/orbit_correction>` and
-#    :doc:`chromaticity measurement <../use_cases/chromaticity-measurement>`.
+# 2. **Use cases**: These apply pyAML to real tasks.
 #
-# For more background, read the explanations:
-# :doc:`What is pyAML? <../../explanation/about>`,
-# :doc:`pyAML Structure <../../explanation/architecture>`,
-# :doc:`Control Modes <../../explanation/control-modes>` and
-# :doc:`Configuration Structure and Syntax <../../explanation/configuration>`.
+# The tutorials are designed to first follow the functionality and then the use cases
+# but they can also be run independently depending on your interests.
+#
+# For more background, read the explanations:  
+#
+# - :doc:`What is pyAML? <../../explanation/about>`
+# - :doc:`pyAML Structure <../../explanation/architecture>`
+# - :doc:`Control Modes <../../explanation/control-modes>`
+# - :doc:`Configuration Structure and Syntax <../../explanation/configuration>`
 
 # sphinx_gallery_thumbnail_path = '_static/pyaml-hierarchy.svg'
