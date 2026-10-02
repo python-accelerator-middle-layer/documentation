@@ -103,33 +103,23 @@ It does not contain any code: the hands-on part starts in the next tutorial.
 #
 # You need Python 3.11 or newer. Always install in a virtual environment, to avoid breaking
 # your Python installation (see :doc:`New to Python <../../how-to/getting-started/python-basics>`
-# if you are not familiar with virtual environments). Then install:
+# if you are not familiar with virtual environments). Then do:
+# 
+# 1. Install the requirements for the tutorials
 #
-# .. code-block:: bash
+#    .. code-block:: bash
 #
-#    pip install "accelerator-middle-layer[cs-oa-tango]" pyaml-test-lattice jupyterlab
+#       pip install -r https://raw.githubusercontent.com/python-accelerator-middle-layer/documentation/main/binder/requirements.txt
 #
-# This installs:
+# 2. [Optional] If you want to run as notebooks, install JupyterLab
 #
-# - ``accelerator-middle-layer``: the ``pyaml`` core package. It also installs pyAT, used by
-#   the ``design`` control mode, together with numpy and matplotlib.
-# - ``[cs-oa-tango]``: the ``pyaml-cs-oa`` control-system bindings for TANGO. The ready-made
-#   configurations of the test machine declare a ``live`` control mode using these bindings,
-#   so they are needed to load them, even if you only use the ``design`` control mode.
-# - ``pyaml-test-lattice``: the test machine, with its lattice and pyAML configurations.
-# - ``jupyterlab``: to open the tutorials as notebooks. It is not needed to run them as
-#   Python scripts.
+#    .. code-block:: bash
 #
-# The other control-system bindings (``cs-oa-epics``, ``tango-pyaml``) are only needed to
-# connect to your own control system, see
-# :doc:`User Installation <../../how-to/installation/user-installation>`. To get exactly the
-# same environment as on Binder, install the
-# `Binder requirements <https://github.com/python-accelerator-middle-layer/documentation/blob/main/binder/requirements.txt>`_
-# instead: ``pip install -r binder/requirements.txt`` from a clone of the documentation
-# repository.
+#       pip install jupyterlab
 #
-# Finally, download a tutorial as a notebook or a Python script with the download links in
-# the right sidebar of its page, and run it with ``jupyter lab`` or ``python``.
+# Finally, download a tutorial as a notebook or a Python script using the download link in
+# the right sidebar of the tutorial's page, and run it with ``jupyter lab`` or ``python``.
+# You can also download all tutorials in one go on the :doc:`Tutorials <../index>` main page.
 
 # %%
 # Where to Go Next
