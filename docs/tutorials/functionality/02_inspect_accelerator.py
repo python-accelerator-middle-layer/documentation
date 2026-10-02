@@ -44,6 +44,10 @@ from pyaml_test_lattice import configurations
 configurations
 
 # %%
+# This tutorials uses a pyAML configuration for TANGO but you can switch to the configuration
+# for EPICS if you want to try with that instead.
+
+# %%
 # Load the Accelerator
 # --------------------
 
