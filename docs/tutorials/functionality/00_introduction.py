@@ -78,10 +78,10 @@ It does not contain any code: the hands-on part starts in the next tutorial.
 # How the Tutorials Work
 # ----------------------
 #
-# **Running the tutorials.** Each tutorial can be run in the cloud with
-# `Binder <https://mybinder.org>`_ using the launcher on its page, with nothing to install,
-# or downloaded and run on your own computer, as a Jupyter notebook or a Python script
-# (see below).
+# **Running the tutorials.** Each tutorial can be run in the cloud without requiring
+# to install or download anything by using the `Binder <https://mybinder.org>`_ launcher
+# on the tutorial page or as a Jupyter notebook or a Python script on your own computer 
+# (see below for instructions).
 #
 # **The test machine.** The tutorials use a small test storage ring, with its lattice and
 # ready-made pyAML configurations, provided by the ``pyaml-test-lattice`` package. It is
