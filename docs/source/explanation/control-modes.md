@@ -9,20 +9,26 @@ A control mode is one way of accessing the accelerator. PyAML is built so the in
 
 ## Available Control Modes
 
-Two kinds of control modes are implemented today.
+Two kinds of control modes are implemented today. Each mode is given a `name` which is used to access the mode. The name can be freely chosen but some standardized names are defined which should not be used for other modes.
 
-**Live** (`ControlSystem`)
-: Access to the accelerator through its control system. The values are read from and written to the control system through control-system bindings such as `tango-pyaml` or `pyaml-cs-oa`. The control system can be the real machine or a *virtual accelerator*, a simulation exposed through the same control-system interface as the real machine. By convention this mode is named `live`.
+**ControlSystem**
+: Access to the accelerator through a control system. The values are read from and written to the control system through control-system bindings such as `tango-pyaml` or `pyaml-cs-oa`. The control system can be the real machine or a *virtual accelerator*, i.e. a simulation exposed through the same control-system interface as the real machine.
 
-**Design** (`Simulator`)
-: Access to a simulation of the accelerator. Values are read from and written to a [pyAT](https://atcollab.github.io/at/p/index.html) lattice. Diagnostics such as BPMs and tune monitors return the values computed by the simulator. No control system is needed. By convention this mode is named `design`.
+  Current standardized names:
+  - `live`
 
-The modes are declared in the configuration: control systems in `controls` and simulators in `simulators`. Each of them has a `name`, which is also the name of the attribute used to access it:
+**Simulator**
+: Access to a simulation of the accelerator. Values are read from and written to a [pyAT](https://atcollab.github.io/at/p/index.html) lattice. Diagnostics such as BPMs and tune monitors return the values computed by the simulator. No control system is needed.
+
+  Current standardized names:
+  - `design`
+
+The modes are declared in the configuration: control systems in `controls` and simulators in `simulators`. For example:
 
 ```yaml
 class: pyaml.accelerator.Accelerator
-facility: My facility
-machine: sr
+facility: my_facility
+machine: accelerator
 energy: 1.0e9
 simulators:
   - class: pyaml.lattice.simulator.Simulator
@@ -36,29 +42,31 @@ devices:
   # ... magnets, BPMs, tuning tools
 ```
 
+The modes are accessed using:
+
 ```python
-accelerator.design  # the Simulator
-accelerator.live    # the ControlSystem
+accelerator.design  # The simulator
+accelerator.live    # The controlSystem
 ```
 
-Several simulators or control systems can be defined, as long as they have different names. For example a second simulator loaded with a lattice including errors could be named `errors` and reached with `accelerator.errors`.
+Several simulators or control systems can be defined, as long as they have different names. For example a second simulator loaded with a lattice including errors could be named `errors` and accessed with `accelerator.errors`.
 
 ## Using Control Modes
 
-Because every mode exposes the same elements, arrays and tools, a script can be written once and run in any mode:
+Since every mode exposes the same elements, arrays and tools, a script can be written once and run in any mode:
 
 ```python
 def correct_tune(sr):
-    sr.tune.set([0.2, 0.3])
+    accelerator.tune.set([0.2, 0.3])
 
-correct_tune(accelerator.design)  # try it on the simulator first
-correct_tune(accelerator.live)    # then run it on the machine
+correct_tune(accelerator.design)  # Try it on the simulator first
+correct_tune(accelerator.live)    # Then run it on the machine
 ```
 
 A common pattern is to select the mode once at the top of a script:
 
 ```python
-SR = accelerator.design   # switch to accelerator.live to act on the machine
+SR = accelerator.design   # Change to accelerator.live to act on the machine
 ```
 
 Different modes can also be used side by side, for example to compare the measured orbit with the simulated one:
@@ -82,14 +90,14 @@ accelerator.design.magnets.get("HCorr").strengths.set(hcorr)
 ```{admonition} Planned, not implemented yet
 :class: note
 
-The following control modes are described in the pyAML specification. They are part of the long-term plan of the collaboration and are **not available yet**.
+The following control modes are described in the pyAML specification. They are part of the long-term plan and are **not available yet**.
 ```
 
 **Errors / commissioning simulations**
-: Simulators with lattices containing errors, and arrays of randomly generated error seeds, used to run simulated commissioning of a machine.
+: Simulators with lattices containing errors used to run simulated commissioning of a machine.
 
 **Shadow (digital shadow)**
-: A simulator that follows the real machine: settings read from the control system are applied to the model, which then computes the expected optics and diagnostics. Writing is forbidden in this mode.
+: A simulator that follows the real machine: settings read from the control system are applied to the model which then computes the expected optics and diagnostics. Writing is forbidden in this mode.
 
 **Archive**
-: A simulator loaded with the machine settings found in the archiving system at a given time, to reproduce and investigate a past situation.
+: A simulator loaded with machine settings from an archiving system at a given timestamp to reproduce and investigate a past situation.
