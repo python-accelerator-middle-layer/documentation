@@ -42,7 +42,7 @@ devices:
   # ... magnets, BPMs, tuning tools
 ```
 
-The modes are accessed using:
+After loading the accelerator into an object called `accelerator`. The modes are accessed using:
 
 ```python
 accelerator.design  # The simulator
