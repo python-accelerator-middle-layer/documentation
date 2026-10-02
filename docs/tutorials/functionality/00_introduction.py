@@ -124,23 +124,21 @@ It does not contain any code: the hands-on part starts in the next tutorial.
 # %%
 # Where to Go Next
 # ----------------
+# 
+# There are two type of tutorials:
 #
-# The tutorials are designed to be followed in this order:
+# 1. **Functionality**: These cover the functionality of pyAML.
 #
-# 1. :doc:`Create an Accelerator <01_create_accelerator>`: create an accelerator
-#    interactively and from a configuration file, and learn how the configuration maps to
-#    Python classes.
-# 2. :doc:`Inspect an Accelerator <02_inspect_accelerator>`: explore what a complete
-#    accelerator configuration contains.
-# 3. The **use cases**, which apply pyAML to real tasks:
-#    :doc:`tune correction <../use_cases/tune-correction>`,
-#    :doc:`orbit correction <../use_cases/orbit_correction>` and
-#    :doc:`chromaticity measurement <../use_cases/chromaticity-measurement>`.
+# 2. **Use cases**: These apply pyAML to real tasks.
 #
-# For more background, read the explanations:
-# :doc:`What is pyAML? <../../explanation/about>`,
-# :doc:`pyAML Structure <../../explanation/architecture>`,
-# :doc:`Control Modes <../../explanation/control-modes>` and
-# :doc:`Configuration Structure and Syntax <../../explanation/configuration>`.
+# The tutorials are designed to first follow the functionality and then the use cases
+# but they can also be run independently depending on your interests.
+#
+# For more background, read the explanations:  
+#
+# - :doc:`What is pyAML? <../../explanation/about>`
+# - :doc:`pyAML Structure <../../explanation/architecture>`
+# - :doc:`Control Modes <../../explanation/control-modes>`
+# - :doc:`Configuration Structure and Syntax <../../explanation/configuration>`
 
 # sphinx_gallery_thumbnail_path = '_static/pyaml-hierarchy.svg'
