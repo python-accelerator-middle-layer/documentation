@@ -1,6 +1,6 @@
 # Control Modes
 
-A control mode is one way of accessing the accelerator. pyAML is built so that the core interactions with the machine work in exactly the same way in every control mode. The following requirements guide the design:
+A control mode is one way of accessing the accelerator. PyAML is built so the interface is exactly the same in every control mode. The following requirements guide the design:
 
 - Core interactions work identically in all control modes.
 - All configured control modes are available at all times, and can be used at the same time in one script.
