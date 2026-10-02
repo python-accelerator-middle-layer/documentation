@@ -19,7 +19,7 @@
 Inspect an Accelerator
 ==========================================================
 
-This tutorial shows how to find out what an accelerator contains using the *yellow pages*,
+This tutorial shows how to find out what an accelerator contains using the **yellow pages**,
 and how to access what you found.
 
 As a reminder, an accelerator contains one or several control modes (for example ``live``
