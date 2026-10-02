@@ -40,26 +40,7 @@ the constructor of a Python class**.
 # `pyAT <https://atcollab.github.io/at/p/index.html>`_.
 #
 # The example uses the lattice provided by the ``pyaml-test-lattice`` package.
-#
-# The Test Lattice
-# ~~~~~~~~~~~~~~~~
-#
-# The test lattice, ``fodo_1gev_6d``, is a small 1 GeV electron storage ring made of
-# **16 identical FODO cells** of 4.8 m, for a circumference of 76.8 m. Each cell contains a
-# focusing quadrupole ``QF`` and sextupole ``SF``, a beam position monitor ``BPM``, a corrector
-# ``COR`` acting in both planes, a dipole ``B``, a defocusing quadrupole ``QD`` and sextupole
-# ``SD``, and a second dipole ``B``:
-#
-# .. figure:: /_static/fodo-cell.svg
-#    :alt: Layout of one FODO cell of the test lattice
-#    :width: 100%
-#
-#    One cell of the test lattice with the control-system name of each element
-#    (``cc`` is the cell number, from 01 to 16).
-#
-# Each element is named after its family and a three-digit index equal to the cell number:
-# ``QF_001`` is the focusing quadrupole of the first cell. This is the magnet used in
-# this tutorial.
+# Go to `Test lattice <../../explanation/test_lattice.html>`_ for details about the lattice.
 
 # Get the path to the lattice file
 # sphinx_gallery_thumbnail_path = '_static/create_accelerator.png'
@@ -150,22 +131,23 @@ quad.strength.get()
 # Configuration files can be written in YAML or JSON. This example shows a YAML file.
 
 # %%
-# The Configuration Rule
-# ~~~~~~~~~~~~~~~~~~~~~~
-# A configuration file describes the same objects as the ones created in approach 1,
-# following one simple rule:
+# .. admonition:: The Configuration Rule
 #
-# - the ``class`` field gives the full path of the Python class to create,
-# - **every other field is an argument of the constructor of that class**, with the same name,
-# - when an argument is itself an object, its value is a nested item with its own ``class``.
+#    A configuration file describes the same objects as the ones created in approach 1,
+#    following one simple rule:
 #
-# For example, in approach 1 the quadrupole was created with:
+#    - The ``class`` field gives the full path of the Python class to create,
+#    - **Every other field is an argument of the constructor of that class** with the same
+#      name as the field and the value to pass to the constructor,
+#    - When an argument is itself an object, its value is a nested item with its own ``class`` field.
+#
+# In approach 1 the quadrupole was created with:
 #
 # .. code-block:: python
 #
 #    Quadrupole(name="QF_001", model=IdentityMagnetModel(physics=""))
 #
-# which becomes in the configuration file:
+# When writing a configuration file instead it becomes:
 #
 # .. code-block:: yaml
 #
@@ -175,8 +157,8 @@ quad.strength.get()
 #      class: pyaml.magnet.identity_model.IdentityMagnetModel
 #      physics: ''
 #
-# The accepted fields of any class are therefore given by the arguments of its constructor,
-# which you can see with ``help()``. The first lines show the constructor signature, and the
+# Since the accepted fields of a class are given by the arguments of its constructor, you
+# can see them using ``help()``. The first lines show the constructor signature, and the
 # ``Parameters`` section describes each argument:
 
 help(Quadrupole)
@@ -184,15 +166,12 @@ help(Quadrupole)
 # %%
 # Write the Configuration File
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# A configuration file is a plain text file. You can write it with any text editor. Other
-# tools which can help you are described in the how-to guide
+# You can write a configuration file with any text editor.
+# More details, advice and tools that can help are described in the how-to guide
 # :doc:`Create and Load Configuration <../../how-to/configuration/create-configuration>`.
 #
-# The file below describes the same accelerator as in approach 1. Compare each item with
-# the Python code above: ``Accelerator(facility=..., machine=..., energy=..., simulators=[...],
-# devices=[...])``, ``Simulator(name=..., lattice=...)`` and ``Quadrupole(name=..., model=...)``.
-#
-# The lattice path is given by an environment variable, using the ``${env:NAME}`` syntax.
+# The file below describes the same accelerator as in approach 1. The main difference is
+# that the lattice path is given by an environment variable, using the ``${env:NAME}`` syntax.
 # It could also be written directly as an absolute path, or relative to a root directory.
 
 configuration = """\
@@ -216,7 +195,7 @@ with open("config.yaml", "w", encoding="utf-8") as file:
     file.write(configuration)
 
 # %%
-# Specify the Paths
+# Specify the Path
 # ~~~~~~~~~~~~~~~~~
 # The path to the configuration file can be specified as absolute or relative to a root directory.
 
