@@ -57,8 +57,8 @@ It does not contain any code: the hands-on part starts in the next tutorial.
 #
 # - **Accelerator**: the top-level object describing one machine. It is created from a
 #   configuration.
-# - **Control mode**: one way of accessing the accelerator. ``accelerator.live`` talks to the
-#   control system (the real machine or a virtual accelerator), ``accelerator.design`` talks
+# - **Control mode**: one way of accessing the accelerator. In the figure above ``accelerator.live`` talks to the
+#   a control system and ``accelerator.design`` talks
 #   to a simulation of the machine made with `pyAT <https://atcollab.github.io/at/p/index.html>`_.
 #   Both provide exactly the same interface.
 # - **Element**: one object of the machine, such as a magnet, a BPM or the RF plant.
