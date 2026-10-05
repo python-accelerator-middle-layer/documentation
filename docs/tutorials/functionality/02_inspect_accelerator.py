@@ -19,7 +19,7 @@
 Inspect an Accelerator
 ==========================================================
 
-This tutorial shows how to find out what an accelerator contains using the *yellow pages*,
+This tutorial shows how to find out what an accelerator contains using the **yellow pages**,
 and how to access what you found.
 
 As a reminder, an accelerator contains one or several control modes (for example ``live``
@@ -42,6 +42,10 @@ from pyaml_test_lattice import configurations
 
 # List available files and their descriptions
 configurations
+
+# %%
+# This tutorials uses a pyAML configuration for TANGO but you can switch to the configuration
+# for EPICS if you want to try with that instead.
 
 # %%
 # Load the Accelerator
