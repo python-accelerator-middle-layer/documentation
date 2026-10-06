@@ -1,6 +1,6 @@
 # Create and Load Configuration
 
-This guide shows how to write a pyAML configuration and load it into an `Accelerator`. It gives recommendations for how to write it and list tools that are available to help.
+This guide shows how to write a pyAML configuration and load it into an `Accelerator` using a minimal example.
 
 ```{tip}
 Read [Configuration Structure and Syntax](../../explanation/configuration) which explains the concepts and ideas behind the configuration before you start.
@@ -8,7 +8,7 @@ Read [Configuration Structure and Syntax](../../explanation/configuration) which
 The configuration can be written as a text file in YAML or JSON or as a dictionary.
 
 ```{note}
-Tools are available to help writing the configuration. See [Tools That Help Writing the Configuration](../configuration/create-configuration.md#tools-that-help-writing-the-configuration) for the options.
+Tools are available to help writing the configuration. See [Tools That Help Writing the Configuration](./tools/index.md) for the options.
 ```
 
 ## The Rule to Remember
@@ -25,7 +25,7 @@ Writing and loading the configuration is the equivalent of writing the Python co
 
 Before writing an item, look up the constructor parameters of the class you want pyAML to build an object of. This can be done in several ways:
 
-- Read the [API documentation](./../reference/index.md) of the class
+- Read the [API documentation](../../reference/index.md) of the class
 - Use `help()` in Python since this shows the signature of the constructor and description of each parameter
 
 For example:
@@ -47,16 +47,16 @@ For example:
   #  |  ...
   ```
 
-- Use the schema registry. The `describe()` method lists the fields of a registered class with their types. See [Use the Schema Registry](../how-to/configuration/use-schema-registry.ipynb).
-- Use a JSON Schema in an external tool. See [Tools That Help Writing the Configuration](../configuration/create-configuration.md#tools-that-help-writing-the-configuration) for the options.
+- Use the schema registry. The `describe()` method lists the fields of a registered class with their types. See [Use the Schema Registry](./use-schema-registry.ipynb).
+- Use a JSON Schema in an external tool. See [Tools That Help Writing the Configuration](./tools/index.md) for the options.
 
 Parameters with a default value is optional and can be left out of the configuration if you wish.
 
 ## Write Configuration as a Text File
 
-Here an example is shown for how to create the configuration in a YAML file. The steps are similar if using JSON. The steps below build a small but complete configuration, using the names of the [test lattice](../../tutorials/functionality/01_create_accelerator).
+Here an example is shown for how to create the configuration in a YAML file. The steps are similar if using JSON. The steps below build a small but complete configuration.
 
-Create a file, for example `accelerator.yaml`, with any text editor. If you want the editor to suggest the fields, you can use VS Code together with a JSON Schema. See [Use JSON Schema in VS Code](../configuration/use-vscode-json-schema.md) for instructions.
+Create a file, for example `accelerator.yaml`, with any text editor. If you want the editor to suggest the fields, you can use VS Code together with a JSON Schema. See [Use JSON Schema in VS Code](./tools/use-vscode-json-schema.md) for instructions.
 
 ### 1. The Accelerator
 
@@ -208,10 +208,7 @@ and refer to it from the main file:
 ```yaml
 devices:
   - devices/quadrupoles.yaml
-  - class: pyaml.bpm.bpm.BPM
-    name: BPM_001
-    x_pos: AN01-AR/DG-EPOS/BPM.01/x
-    y_pos: AN01-AR/DG-EPOS/BPM.01/y
+  # ...
 ```
 
 Values can also come from environment variables with `${env:NAME}`. See [Resolvers](../../explanation/configuration.md#resolvers) for all options.
@@ -254,46 +251,6 @@ If the control-system bindings are not installed or you only want to use the sim
 
 The configuration can also be loaded as a nested dictionary with `Accelerator.from_dict()`. This also allows to write the configuration directly as a dictionary instead of a text file if you prefer.
 
-```python
-import yaml
-
-with open("accelerator.yaml") as file:
-    config = yaml.safe_load(file)
-
-accelerator = Accelerator.from_dict(config)
-```
+To validate the whole configuration before any object is created, add `validate=True`. See [Validate Configuration](./validate-configuration) for details.
 
 See the API documentation for the [Accelerator](https://pyaml.readthedocs.io/en/stable/api/pyaml.accelerator.html#module-pyaml.accelerator) for all options.
-
-## Validate the Configuration
-
-If the classes you use have enabled validation during object creation (this is the default for all common pyAML classes), the configuration will be validated as part of creating the objects: a missing required field or an unknown field raises a `PyAMLConfigException` naming the class and the field.
-
-The whole configuration can also be validated before anything is created.
-
-```python
-from pyaml.validation import SchemaRegistry
-
-SchemaRegistry().discover()
-accelerator = Accelerator.load("accelerator.yaml", validate=True)
-```
-
-The configuration can also be validated without loading it, which is useful if you maintain it separately from pyAML. See [Validate Configuration](./validate-configuration).
-
-## Tools That Help Writing the Configuration
-
-There are tools available to help to write and modify the configuration. They can suggest the fields and check their types while you write. The tools are under development and testing so new or other tools might be available in the future based on user feedback.
-
-Some of the tools are based on a [JSON Schema](https://json-schema.org). For information about JSON Schemas and how to generate them, see [Configuration Schemas and Validation](../../explanation/schema_and_validation.md) and [Generate JSON Schemas](./generate-json-schema.ipynb).
-
-Currently these tools are available:
-
-- [Use ConfigurationSchema](./use-configuration-schema.ipynb) objects to create the configuration in Python and export it as a dictionary or text file. This allows to program the configuration.
-
-- [Use a JSON Schema in VS Code](./use-vscode-json-schema.md)
-
-- [Use the MetaConfigurator](./use-meta-configurator.md), a form-based editor in the browser
-
-```{tip}
-AI coding assistants can also help: supply for example a lattice file, a description of the naming conventions of your control system, and the JSON Schema of the pyAML configuration and ask it to write the configuration for you.
-```
