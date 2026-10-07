@@ -16,22 +16,34 @@ The catalog makes it possible to use simple keys in the pyAML configuration and 
 
 ## Dynamic Catalog
 
+```{tip}
 The dynamic catalog does not require a configuration file and it is therefore the recommended option for most use cases.
+```
 
 In this version, the configuration is extracted from a dynamic source. This can be directly from the control system or some other source, for example a database, depending on the chosen backend and its catalog implementation.
 
 This requires access to the source, for example by being on the same network, but no configuration file for the control system configuration has to be loaded by pyAML.
 
-Example of configuration for dynamic catalog:
+Example of configuration for dynamic catalog for the `pyaml-cs-oa` bindings :
 
 ```yaml
 controls:
-  - type: pyaml_cs_oa.controlsystem
+  - class: pyaml_cs_oa.controlsystem.OphydAsyncControlSystem
     name: live
-    catalog: 
-      - type: pyaml_cs_oa.dynamic_catalog
-        backend: tango
+    backend: tango
 ```
+
+The backend (currently TANGO or EPICS) is specified using the `backend` field.
+
+For the `tango-pyaml` bindings no backend needs to be specified:
+
+```yaml
+controls:
+  - class: tango.pyaml.tango_catalog.TangoCatalog
+    name: live
+```
+
+Check the [API documentation](../reference/index.md) for all the options for the bindings you want to use.
 
 ## Static Catalog
 
@@ -43,22 +55,27 @@ Example of configuration for static catalog:
 
 ```yaml
 controls:
-- type: pyaml_cs_oa.controlsystem
-  name: live
-  catalog: fodo_1gev_6d_pyaml_catalogs-oa.yaml
-``` 
+  - class: pyaml_cs_oa.controlsystem.OphydAsyncControlSystem
+    name: live
+    catalog: fodo_1gev_6d_pyaml_catalogs-oa.yaml
+```
 
-Example of an entry in the static catalog:
+Example of a static catalog file for `pyaml-cs-oa` with a single entry:
 
 ```yaml
-class: tango.pyaml.static_catalog.StaticCatalog
+class: pyaml_cs_oa.static_catalog.StaticCatalog
 entries:
-- class: tango.pyaml.static_catalog_entry.StaticCatalogEntry
-  key: AN01-AR/EM-QP/QF.01/magnetic_strength
-  device:
-    class: tango.pyaml.attribute.Attribute
-    attribute: AN01-AR/EM-QP/QF.01/magnetic_strength
-    unit: 1/m
+  - class: pyaml_cs_oa.static_catalog_entry.StaticCatalogEntry
+    key: AN01-AR/EM-QP/QF.01/magnetic_strength
+    device:
+      class: pyaml_cs_oa.tangoAtt.TangoAtt
+      attribute: AN01-AR/EM-QP/QF.01/magnetic_strength
+      unit: 1/m
 ```
+
+The static catalog for `tango-pyaml` uses the corresponding classes for that package:
+- `tango.pyaml.static_catalog.StaticCatalog`
+- `tango.pyaml.static_catalog_entry.StaticCatalogEntry`
+- `tango.pyaml.attribute.Attribute`
 
 This format follows the same syntax as for the rest of the pyAML configuration since during the loading process the file is read and the content added to the rest of the pyAML configuration.

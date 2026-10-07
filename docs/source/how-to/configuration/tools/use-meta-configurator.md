@@ -6,7 +6,7 @@
 
 Pre-generated schemas are available in [pyaml-schemas](https://github.com/python-accelerator-middle-layer/pyaml-schemas). These include the classes that are part of the pyAML ecosystem.
 
-If you have facility specific classes that you want to include in your configuration, you can use the `SchemaRegistry` to generate a JSON Schema including them. See [Generate JSON Schemas](../configuration/generate-json-schema) for details.
+If you have facility specific classes that you want to include in your configuration, you can use the `SchemaRegistry` to generate a JSON Schema including them. See [Generate JSON Schemas](../generate-json-schema) for details.
 
 The schema must describe the document you want to create. For example, a schema for a quadrupole is suitable for editing a quadrupole object, but not for editing a complete accelerator containing controls, simulators, and devices.
 

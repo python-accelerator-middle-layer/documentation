@@ -1,0 +1,103 @@
+# Control Modes
+
+A control mode is one way of accessing the accelerator. PyAML is built so the interface is exactly the same in every control mode. The following requirements guide the design:
+
+- Core interactions work identically in all control modes.
+- All configured control modes are available at all times, and can be used at the same time in one script.
+- All control modes are defined in the configuration.
+- Standard measurements and high-level applications behave in a similar way in every control mode.
+
+## Available Control Modes
+
+Two kinds of control modes are implemented today. Each mode is given a `name` which is used to access the mode. The name can be freely chosen but some standardized names are defined which should not be used for other modes.
+
+**ControlSystem**
+: Access to the accelerator through a control system. The values are read from and written to the control system through control-system bindings such as `tango-pyaml` or `pyaml-cs-oa`. The control system can be the real machine or a *virtual accelerator*, i.e. a simulation exposed through the same control-system interface as the real machine.
+
+  Current standardized names:
+  - `live`
+
+**Simulator**
+: Access to a simulation of the accelerator. Values are read from and written to a [pyAT](https://atcollab.github.io/at/p/index.html) lattice. Diagnostics such as BPMs and tune monitors return the values computed by the simulator. No control system is needed.
+
+  Current standardized names:
+  - `design`
+
+The modes are declared in the configuration: control systems in `controls` and simulators in `simulators`. For example:
+
+```yaml
+class: pyaml.accelerator.Accelerator
+facility: my_facility
+machine: storage_ring
+energy: 1.0e9
+simulators:
+  - class: pyaml.lattice.simulator.Simulator
+    name: design
+    lattice: ${path:sr_lattice.json}
+controls:
+  - class: pyaml_cs_oa.controlsystem.OphydAsyncControlSystem
+    name: live
+    catalog: catalog.yaml
+devices:
+  # ... magnets, BPMs, tuning tools
+```
+
+After loading the accelerator into an object called `accelerator`. The modes are accessed using:
+
+```python
+accelerator.design  # The simulator
+accelerator.live    # The controlSystem
+```
+
+Several simulators or control systems can be defined, as long as they have different names. For example a second simulator loaded with a lattice including errors could be named `errors` and accessed with `accelerator.errors`.
+
+## Using Control Modes
+
+Since every mode exposes the same elements, arrays and tools, a script can be written once and run in any mode:
+
+```python
+def correct_tune(sr):
+    accelerator.tune.set([0.2, 0.3])
+
+correct_tune(accelerator.design)  # Try it on the simulator first
+correct_tune(accelerator.live)    # Then run it on the machine
+```
+
+A common pattern is to select the mode once at the top of a script:
+
+```python
+SR = accelerator.design   # Change to accelerator.live to act on the machine
+```
+
+Different modes can also be used side by side, for example to compare the measured orbit with the simulated one:
+
+```python
+delta = (
+    accelerator.live.bpms.get("BPM").positions.get()
+    - accelerator.design.bpms.get("BPM").positions.get()
+)
+```
+
+or to copy the corrector settings of the machine into the model:
+
+```python
+hcorr = accelerator.live.magnets.get("HCorr").strengths.get()
+accelerator.design.magnets.get("HCorr").strengths.set(hcorr)
+```
+
+## Planned Control Modes
+
+```{admonition} Planned, not implemented yet
+:class: note
+
+The following control modes are described in the pyAML specification. They are part of the long-term plan and are **not available yet**.
+```
+
+**Errors / commissioning simulations**
+: Simulators with lattices containing errors used to run simulated commissioning of a machine.
+
+**Shadow (digital shadow)**
+: A simulator that follows the real machine: settings read from the control system are applied to the model which then computes the expected optics and diagnostics. Writing is forbidden in this mode.
+
+**Archive**
+: A simulator loaded with machine settings from an archiving system at a given timestamp to reproduce and investigate a past situation.

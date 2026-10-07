@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 250" width="840" height="250" font-family="Helvetica, Arial, sans-serif" font-size="13">
+  <title>One cell of the fodo_1gev_6d test lattice</title>
+  <style>
+    .beam { stroke: #8a8f98; stroke-width: 2; }
+    .el { stroke: #3b4150; stroke-width: 1; }
+    .dip { fill: #6fa8dc; }
+    .qf { fill: #e06666; }
+    .qd { fill: #e69138; }
+    .sx { fill: #93c47d; }
+    .cor { fill: #b4a7d6; }
+    .bpm { fill: #f1c232; stroke: #3b4150; stroke-width: 1.2; }
+    .bpmlink { stroke: #d4a017; stroke-width: 1.5; stroke-dasharray: 3 2; }
+    .bpmx { stroke: #3b4150; stroke-width: 1.2; }
+    .name { fill: #8a8f98; font-weight: bold; }
+    .dev { fill: #8a8f98; font-family: Menlo, Consolas, monospace; font-size: 11px; }
+    .ax { stroke: #8a8f98; stroke-width: 1; }
+    .tick { fill: #8a8f98; font-size: 11px; }
+  </style>
+
+  <!-- beam line -->
+  <line class="beam" x1="20" y1="110" x2="820" y2="110"/>
+
+  <!-- QF 0.0-0.4 m -->
+  <rect class="el qf" x="36" y="80" width="64" height="30"/>
+  <!-- SF 0.4-0.5 m -->
+  <rect class="el sx" x="100" y="92" width="16" height="18"/>
+  <!-- COR 0.5-0.6 m -->
+  <rect class="el cor" x="116" y="98" width="16" height="24"/>
+  <!-- BPM at 0.5 m: pickup marker below the beam line, drawn on top -->
+  <line class="bpmlink" x1="116" y1="110" x2="116" y2="134"/>
+  <circle class="el bpm" cx="116" cy="110" r="3.5"/>
+  <circle class="el bpm" cx="116" cy="145" r="11"/>
+  <line class="bpmx" x1="108" y1="145" x2="124" y2="145"/>
+  <line class="bpmx" x1="116" y1="137" x2="116" y2="153"/>
+  <!-- B 0.9-1.9 m -->
+  <rect class="el dip" x="180" y="100" width="160" height="20"/>
+  <!-- QD 2.4-2.8 m -->
+  <rect class="el qd" x="420" y="110" width="64" height="30"/>
+  <!-- SD 2.8-2.9 m -->
+  <rect class="el sx" x="484" y="110" width="16" height="18"/>
+  <!-- B 3.3-4.3 m -->
+  <rect class="el dip" x="564" y="100" width="160" height="20"/>
+
+  <!-- element names -->
+  <text class="name" x="62" y="74" text-anchor="middle">QF</text>
+  <text class="name" x="110" y="84" text-anchor="middle">SF</text>
+  <text class="name" x="116" y="174" text-anchor="middle">BPM</text>
+  <text class="name" x="136" y="104" text-anchor="start">COR</text>
+  <text class="name" x="260" y="94" text-anchor="middle">B</text>
+  <text class="name" x="452" y="156" text-anchor="middle">QD</text>
+  <text class="name" x="492" y="104" text-anchor="middle">SD</text>
+  <text class="name" x="644" y="94" text-anchor="middle">B</text>
+
+  <!-- device names for cell NN -->
+  <text class="dev" x="36" y="22">QF_0cc  → ANcc-AR/EM-QP/QF.01/magnetic_strength</text>
+  <text class="dev" x="36" y="38">SF_0cc  → ANcc-AR/EM-SX/SF.01/magnetic_strength</text>
+  <text class="dev" x="36" y="54">COR_0cc → ANcc-AR/EM-COR/CH.01 (H), ANcc-AR/EM-COR/CV.01 (V)</text>
+  <text class="dev" x="440" y="176">BPM_0cc → ANcc-AR/DG-EPOS/BPM.01/x, /y</text>
+  <text class="dev" x="440" y="192">QD_0cc  → ANcc-AR/EM-QP/QD.01/magnetic_strength</text>
+  <text class="dev" x="440" y="208">SD_0cc  → ANcc-AR/EM-SX/SD.01/magnetic_strength</text>
+
+  <!-- s axis -->
+  <line class="ax" x1="36" y1="228" x2="804" y2="228"/>
+  <g class="tick" text-anchor="middle">
+    <line class="ax" x1="36" y1="224" x2="36" y2="232"/><text x="36" y="245">0</text>
+    <line class="ax" x1="196" y1="224" x2="196" y2="232"/><text x="196" y="245">1</text>
+    <line class="ax" x1="356" y1="224" x2="356" y2="232"/><text x="356" y="245">2</text>
+    <line class="ax" x1="516" y1="224" x2="516" y2="232"/><text x="516" y="245">3</text>
+    <line class="ax" x1="676" y1="224" x2="676" y2="232"/><text x="676" y="245">4</text>
+    <line class="ax" x1="804" y1="224" x2="804" y2="232"/><text x="804" y="245">4.8 m</text>
+  </g>
+</svg>

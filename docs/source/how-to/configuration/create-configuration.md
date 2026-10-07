@@ -1,31 +1,256 @@
 # Create and Load Configuration
 
-The structure and syntax of the configuration are explained in detail in [Configuration Structure and Syntax](../../explanation/configuration). This guide focuses on the different ways to create it.
+This guide shows how to write a pyAML configuration and load it into an `Accelerator` using a minimal example.
 
-There are many ways to create a configuration. It is recommended to test the different
-options and see which one you prefer:
+```{tip}
+Read [Configuration Structure and Syntax](../../explanation/configuration) which explains the concepts and ideas behind the configuration before you start.
+```
+The configuration can be written as a text file in YAML or JSON or as a dictionary.
 
-- Use a [JSON Schema in VS Code](./use-vscode-json-schema.md)
+```{note}
+Tools are available to help writing the configuration. See [Tools That Help Writing the Configuration](./tools/index.md) for the options.
+```
 
-- Use a JSON Schema in the [MetaConfigurator](./use-meta-configurator.md)
+## The Rule to Remember
 
-- [Use ConfigurationSchema](./use-configuration-schema.ipynb) objects and export as a dictionary or text file
+The configuration consists of a set of items which tells pyAML which objects to build when loading the configuration.
 
-Another option is to use AI coding assistance tools. You can then for example supply a lattice file, information describing the naming conventions for your control system and a JSON Schema for the pyAML configuration and get help to write it.
+```{important}
+Each item of the configuration names a Python class in its `class` field. **Every other field is an argument of the constructor of that class** with the same name as the field and the value to pass to the constructor. When a constructor argument is an object, its value in the configuration is a nested item with its own `class` field.
+```
 
-For information about what a JSON Schema is and how to generate it, see [Configuration Schemas and Validation](../../explanation/schema_and_validation.md) and [Generate JSON Schemas](./generate-json-schema.ipynb).
+Writing and loading the configuration is the equivalent of writing the Python code that creates the objects yourself. The configuration just allows pyAML to create the objects for you.
+
+## Finding the Accepted Fields
+
+Before writing an item, look up the constructor parameters of the class you want pyAML to build an object of. This can be done in several ways:
+
+- Read the [API documentation](../../reference/index.md) of the class
+- Use `help()` in Python since this shows the signature of the constructor and description of each parameter
+
+For example:
+
+  ```python
+  from pyaml.bpm.bpm import BPM
+
+  help(BPM)
+  # class BPM(...)
+  #  |  BPM(name: str, lattice_names: str | None = None, description: str | None = None,
+  #  |      x_pos: str | None = None, y_pos: str | None = None, ...)
+  #  |
+  #  |  Parameters
+  #  |  ----------
+  #  |  name : str
+  #  |      Name of the BPM.
+  #  |  x_pos : str | None, optional
+  #  |      Device catalog key for the horizontal beam position.
+  #  |  ...
+  ```
+
+- Use the schema registry. The `describe()` method lists the fields of a registered class with their types. See [Use the Schema Registry](./use-schema-registry.ipynb).
+- Use a JSON Schema in an external tool. See [Tools That Help Writing the Configuration](./tools/index.md) for the options.
+
+Parameters with a default value is optional and can be left out of the configuration if you wish.
+
+## Write Configuration as a Text File
+
+Here an example is shown for how to create the configuration in a YAML file. The steps are similar if using JSON. The steps below build a small but complete configuration.
+
+Create a file, for example `accelerator.yaml`, with any text editor. If you want the editor to suggest the fields, you can use VS Code together with a JSON Schema. See [Use JSON Schema in VS Code](./tools/use-vscode-json-schema.md) for instructions.
+
+### 1. The Accelerator
+
+The root item is the `Accelerator`. Its required arguments are `facility`, `machine` and `energy`:
+
+```yaml
+class: pyaml.accelerator.Accelerator
+facility: my_facility
+machine: storage_ring
+energy: 1.0e9
+```
+
+### 2. The Control Modes
+
+Add the control modes as lists in `simulators` and `controls`. Their `name` is also the name used to access them, for example `accelerator.design`, `accelerator.live` etc.
+
+A simulator needs the path to a lattice file. All [formats that can be loaded by pyAT](https://atcollab.github.io/at/p/api/at.load.html#module-at.load) works. If you use the JSON format, you need to use the `${path:...}` [resolver](../../explanation/configuration.md#resolvers) to avoid the lattice being loaded as if it was a configuration file.
+
+```yaml
+simulators:
+  - class: pyaml.lattice.simulator.Simulator
+    name: design
+    lattice: ${path:lattice.json}
+```
+
+A control system is given by the class of the bindings you use. The arguments depend on the bindings and catalog type you decide to use. The catalog describes how the keys used by the devices map to control-system signals. See [Control System Catalogs](../../explanation/catalog.md) for the different types of catalogs.
+
+For example for `pyaml-cs-oa` using a dynamic catalog for TANGO:
+
+```yaml
+controls:
+  - class: pyaml_cs_oa.controlsystem.OphydAsyncControlSystem
+    name: live
+    backend: tango
+```
+
+If you only want to use the simulator, you can leave out `controls` entirely.
+
+### 3. The Devices
+
+Add the elements of the machine in `devices`. For a magnet, the `model` argument is an object (the magnet model, which also handles the unit conversion), so it is written as a nested item.
+
+The strings given to `physics`, `x_pos` and `y_pos` are keys looked up in the catalog of the control system.
+
+```yaml
+devices:
+  - class: pyaml.magnet.quadrupole.Quadrupole
+    name: QF_001
+    model:
+      class: pyaml.magnet.identity_model.IdentityMagnetModel
+      unit: 1/m
+      physics: AN01-AR/EM-QP/QF.01/magnetic_strength
+  - class: pyaml.magnet.quadrupole.Quadrupole
+    name: QD_001
+    model:
+      class: pyaml.magnet.identity_model.IdentityMagnetModel
+      unit: 1/m
+      physics: AN01-AR/EM-QP/QD.01/magnetic_strength
+  - class: pyaml.bpm.bpm.BPM
+    name: BPM_001
+    x_pos: AN01-AR/DG-EPOS/BPM.01/x
+    y_pos: AN01-AR/DG-EPOS/BPM.01/y
+```
+
+By default, the `name` of an element is also the name of the element in the lattice of the simulator. If you want to use a different name in pyAML, use `lattice_names` to map between pyAML and the lattice.
+
+### 4. The Arrays
+
+Group elements in named arrays in `arrays`. Element names can contain wildcards:
+
+```yaml
+arrays:
+  - class: pyaml.arrays.magnet.Magnet
+    name: Quadrupoles
+    elements:
+      - QF_001
+      - QD_001
+  - class: pyaml.arrays.bpm.BPM
+    name: BPMs
+    elements:
+      - BPM_*
+```
+
+### Complete File
+
+Putting it all together:
+
+```yaml
+class: pyaml.accelerator.Accelerator
+facility: my_facility
+machine: storage_ring
+energy: 1.0e9
+simulators:
+  - class: pyaml.lattice.simulator.Simulator
+    name: design
+    lattice: ${path:lattice.json}
+controls:
+  - class: pyaml_cs_oa.controlsystem.OphydAsyncControlSystem
+    name: live
+    backend: tango
+devices:
+  - class: pyaml.magnet.quadrupole.Quadrupole
+    name: QF_001
+    model:
+      class: pyaml.magnet.identity_model.IdentityMagnetModel
+      unit: 1/m
+      physics: AN01-AR/EM-QP/QF.01/magnetic_strength
+  - class: pyaml.magnet.quadrupole.Quadrupole
+    name: QD_001
+    model:
+      class: pyaml.magnet.identity_model.IdentityMagnetModel
+      unit: 1/m
+      physics: AN01-AR/EM-QP/QD.01/magnetic_strength
+  - class: pyaml.bpm.bpm.BPM
+    name: BPM_001
+    x_pos: AN01-AR/DG-EPOS/BPM.01/x
+    y_pos: AN01-AR/DG-EPOS/BPM.01/y
+arrays:
+  - class: pyaml.arrays.magnet.Magnet
+    name: Quadrupoles
+    elements:
+      - QF_001
+      - QD_001
+  - class: pyaml.arrays.bpm.BPM
+    name: BPMs
+    elements:
+      - BPM_*
+```
+
+## Split the Configuration into Several Files
+
+For a real machine the configuration becomes long. When the configuration is loaded from a file, any string value ending with `.yaml`, `.yml` or `.json` is replaced by the content of that file. Inside a list, if the file contains a list, its items are added to the parent list. For example, move the quadrupoles to `devices/quadrupoles.yaml`:
+
+```yaml
+# devices/quadrupoles.yaml
+- class: pyaml.magnet.quadrupole.Quadrupole
+  name: QF_001
+  model:
+    class: pyaml.magnet.identity_model.IdentityMagnetModel
+    unit: 1/m
+    physics: AN01-AR/EM-QP/QF.01/magnetic_strength
+- class: pyaml.magnet.quadrupole.Quadrupole
+  name: QD_001
+  # ...
+```
+
+and refer to it from the main file:
+
+```yaml
+devices:
+  - devices/quadrupoles.yaml
+  # ...
+```
+
+Values can also come from environment variables with `${env:NAME}`. See [Resolvers](../../explanation/configuration.md#resolvers) for all options.
+
+## Use Your Own Classes
+
+The configuration is not limited to pyAML classes. Any class that can be imported can be used in the configuration, for example a magnet model specific to your facility:
+
+```python
+# my_facility/models.py
+from pyaml.magnet.model import MagnetModel
+
+class MyMagnetModel(MagnetModel):
+    def __init__(self, power_supply: str, calibration: float):
+        ...
+```
+
+```yaml
+model:
+  class: my_facility.models.MyMagnetModel
+  power_supply: PS/QF/01
+  calibration: 1.02
+```
 
 ## Load the Configuration
 
-The configuration can be loaded into the `Accelerator` in two ways:
+Set the [configuration root](../../explanation/configuration.md#configuration-root), which is the directory used to resolve relative paths, then load the file with `Accelerator.load()`.
 
-| Type| Command | Description |
-| --- | --- | --- |
-| File | `Accelerator.load()` | A text file in JSON or YAML format.
-| Dictionary | `Accelerator.from_dict()` | A nested dictionary.
+```python
+from pyaml.configuration import ROOT
+from pyaml.accelerator import Accelerator
 
-See the API documentation for the [Accelerator](https://pyaml.readthedocs.io/en/stable/api/pyaml.accelerator.html#module-pyaml.accelerator) for more details.
+ROOT.set("/path/to/configuration")
+accelerator = Accelerator.load("accelerator.yaml")
 
-## Validation
+accelerator.design.magnets.get("Quadrupoles").strengths.get()
+```
 
-The configuration is validated when loading it into the `Accelerator` but it can also be validated without having to load it. This is useful if you want to be able to maintain it separately from pyAML. See [Validate Configuration](./validate-configuration) for details.
+If the control-system bindings are not installed or you only want to use the simulator, add `ignore_external=True` and the `controls` section is skipped without having to remove it from the configuration.
+
+The configuration can also be loaded as a nested dictionary with `Accelerator.from_dict()`. This also allows to write the configuration directly as a dictionary instead of a text file if you prefer.
+
+To validate the whole configuration before any object is created, add `validate=True`. See [Validate Configuration](./validate-configuration) for details.
+
+See the API documentation for the [Accelerator](https://pyaml.readthedocs.io/en/stable/api/pyaml.accelerator.html#module-pyaml.accelerator) for all options.
