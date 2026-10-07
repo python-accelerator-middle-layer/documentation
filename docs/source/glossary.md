@@ -6,7 +6,7 @@ Accelerator
 : The top-level pyAML object describing one machine (a storage ring, a booster, a transfer line, ...). It holds all the control modes, arrays and devices.
 
 Control mode
-: One way of accessing the accelerator, for example `live` (the real machine) or `design` (a simulation). All control modes offer the same interface. See [Control Modes](control-modes.md).
+: One way of accessing the accelerator, for example `live` (the real machine) or `design` (a simulation). All control modes offer the same interface. See [Control Modes](./explanation/control-modes.md).
 
 Element
 : A single object of the accelerator that can be read or set: a magnet, a BPM, an RF plant, a tune monitor, ...
@@ -21,7 +21,7 @@ Backend
 : The system that a control mode talks to: a control system (through control-system bindings such as `tango-pyaml` or `pyaml-cs-oa`) or a simulation code (`pyAT`).
 
 Catalog
-: The backend-specific description of how a key used in the configuration maps to a signal of the control system. See [Control System Catalogs](catalog.md).
+: The backend-specific description of how a key used in the configuration maps to a signal of the control system. See [Control System Catalogs](./explanation/catalog.md).
 
 Virtual accelerator
 : A simulated machine exposed through a real control system (for example TANGO devices backed by a simulation), so that it can be used exactly like the real machine.

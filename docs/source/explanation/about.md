@@ -60,4 +60,4 @@ A facility adopts pyAML by writing a *configuration* describing its machine. The
 
 There is one simple rule behind the configuration: each item names a Python class, and each of its other fields is an argument of that class's constructor. See [Configuration Structure and Syntax](configuration.md).
 
-The terms used throughout the documentation are defined in the [Glossary](glossary.md).
+The terms used throughout the documentation are defined in the [Glossary](../glossary.md).
