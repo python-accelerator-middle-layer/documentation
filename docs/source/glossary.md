@@ -6,7 +6,7 @@ Accelerator
 : The top-level pyAML object describing one machine (a storage ring, a booster, a transfer line, ...). It holds all the control modes, arrays and devices.
 
 Control mode
-: One way of accessing the accelerator, for example `live` (the real machine) or `design` (a simulation). All control modes offer the same interface. See [Control Modes](control-modes.md).
+: One way of accessing the accelerator, for example `live` (the real machine) or `design` (a simulation). All control modes offer the same interface. See [Control Modes](./explanation/control-modes.md).
 
 Element
 : A single object of the accelerator that can be read or set: a magnet, a BPM, an RF plant, a tune monitor, ...
