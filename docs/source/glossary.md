@@ -21,7 +21,7 @@ Backend
 : The system that a control mode talks to: a control system (through control-system bindings such as `tango-pyaml` or `pyaml-cs-oa`) or a simulation code (`pyAT`).
 
 Catalog
-: The backend-specific description of how a key used in the configuration maps to a signal of the control system. See [Control System Catalogs](catalog.md).
+: The backend-specific description of how a key used in the configuration maps to a signal of the control system. See [Control System Catalogs](./explanation/catalog.md).
 
 Virtual accelerator
 : A simulated machine exposed through a real control system (for example TANGO devices backed by a simulation), so that it can be used exactly like the real machine.
