@@ -213,6 +213,10 @@ devices:
 
 Values can also come from environment variables with `${env:NAME}`. See [Resolvers](../../explanation/configuration.md#resolvers) for all options.
 
+## Reuse Configuration with Templates
+
+If several devices share the same structure, define it once and supply names or catalog keys as parameters. See [Use Configuration Templates](./use-templates.md) for a complete example.
+
 ## Use Your Own Classes
 
 The configuration is not limited to pyAML classes. Any class that can be imported can be used in the configuration, for example a magnet model specific to your facility:
