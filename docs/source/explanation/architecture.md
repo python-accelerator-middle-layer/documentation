@@ -84,7 +84,7 @@ quads = accelerator.design.magnets.get("QForTune")
 k = quads.strengths.get()     # numpy array, one value per magnet
 quads.strengths.set(k * 1.001)
 
-orbit = accelerator.design.bpms.get("BPM").positions.get()
+orbit = accelerator.design.diagnostic.bpms.get("BPM").positions.get()
 ```
 
 Arrays are also how high-level tools know which elements to use: a tune correction tool, for example, is configured with the *name* of the quadrupole array it should act on.

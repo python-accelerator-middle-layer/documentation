@@ -31,7 +31,7 @@ Before writing an item, look up the constructor parameters of the class you want
 For example:
 
   ```python
-  from pyaml.bpm.bpm import BPM
+  from pyaml.diagnostics.bpm.bpm import BPM
 
   help(BPM)
   # class BPM(...)
@@ -115,7 +115,7 @@ devices:
       class: pyaml.magnet.identity_model.IdentityMagnetModel
       unit: 1/m
       physics: AN01-AR/EM-QP/QD.01/magnetic_strength
-  - class: pyaml.bpm.bpm.BPM
+  - class: pyaml.diagnostics.bpm.bpm.BPM
     name: BPM_001
     x_pos: AN01-AR/DG-EPOS/BPM.01/x
     y_pos: AN01-AR/DG-EPOS/BPM.01/y
@@ -170,7 +170,7 @@ devices:
       class: pyaml.magnet.identity_model.IdentityMagnetModel
       unit: 1/m
       physics: AN01-AR/EM-QP/QD.01/magnetic_strength
-  - class: pyaml.bpm.bpm.BPM
+  - class: pyaml.diagnostics.bpm.bpm.BPM
     name: BPM_001
     x_pos: AN01-AR/DG-EPOS/BPM.01/x
     y_pos: AN01-AR/DG-EPOS/BPM.01/y

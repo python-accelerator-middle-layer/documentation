@@ -115,7 +115,7 @@ print(f"Reset to {str_before:.4f}")
 # Tune Correction
 # -----------------------------
 #
-# ``SR.tune`` is the `DEFAULT_TUNE_CORRECTION` tool. ``SR.trm`` is the `DEFAULT_TUNE_RESPONSE_MATRIX` tool.
+# ``SR.tool.tune`` is the `DEFAULT_TUNE_CORRECTION` tool. ``SR.tool.trm`` is the `DEFAULT_TUNE_RESPONSE_MATRIX` tool.
 #
 # Before correcting the tune you need a response matrix. It can be measured as shown below or loaded from a previously saved file.
 
@@ -153,7 +153,7 @@ print(SR.tool.trm)
 # Correcting the tune
 # -----------------------------
 #
-# ``SR.tune.set([qx, qy])`` runs the correction iteratively.
+# ``SR.tool.tune.set([qx, qy])`` runs the correction iteratively.
 # The ``iter`` parameter controls the number of iterations and ``wait_time`` the settling time between each iteration.
 
 # %%
