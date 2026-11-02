@@ -87,7 +87,7 @@ print(f"BPMs: {len(bpms)}, H correctors: {len(hcorr)}, V correctors: {len(vcorr)
 # Orbit Response Matrix
 # ---------------------
 #
-# The ORM can be saved in multiple formats. Load it into ``SR.orbit`` before correcting.
+# The ORM can be saved in multiple formats. Load it into ``SR.tool.orbit`` before correcting.
 
 # Print string representation of the orbit response matrix
 print(SR.tool.orm)
@@ -187,7 +187,7 @@ plt.show()
 # Correct the Orbit
 # ------------------
 #
-# Standard correction: ``SR.orbit.correct(reference=reference)``.
+# Standard correction: ``SR.tool.orbit.correct(reference=reference)``.
 #
 # Optional variants (uncomment to use):
 #
@@ -198,11 +198,11 @@ plt.show()
 SR.tool.orbit.correct(reference=reference)
 
 # With virtual corrector weight (ESRF style):
-# SR.orbit.set_virtual_weight(1000)
-# SR.orbit.correct(reference=reference)
+# SR.tool.orbit.set_virtual_weight(1000)
+# SR.tool.orbit.correct(reference=reference)
 
 # With RF orbit correction (ESRF style, requires dispersion in ORM):
-# SR.orbit.correct(reference=reference, rf=True)
+# SR.tool.orbit.correct(reference=reference, rf=True)
 
 sleep(wait_time)
 

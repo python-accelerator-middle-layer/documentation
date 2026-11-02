@@ -57,7 +57,7 @@ Since every mode exposes the same elements, arrays and tools, a script can be wr
 
 ```python
 def correct_tune(sr):
-    accelerator.tune.set([0.2, 0.3])
+    sr.tool.tune.set([0.2, 0.3])
 
 correct_tune(accelerator.design)  # Try it on the simulator first
 correct_tune(accelerator.live)    # Then run it on the machine
@@ -73,8 +73,8 @@ Different modes can also be used side by side, for example to compare the measur
 
 ```python
 delta = (
-    accelerator.live.bpms.get("BPM").positions.get()
-    - accelerator.design.bpms.get("BPM").positions.get()
+    accelerator.live.diagnostic.bpms.get("BPM").positions.get()
+    - accelerator.design.diagnostic.bpms.get("BPM").positions.get()
 )
 ```
 
