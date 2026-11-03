@@ -22,6 +22,7 @@ installation/developer-installation
 :caption: Configuration
 
 configuration/create-configuration
+configuration/use-templates
 configuration/use-schema-registry
 configuration/validate-configuration
 configuration/generate-json-schema

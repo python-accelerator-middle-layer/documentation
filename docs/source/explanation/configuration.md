@@ -117,9 +117,20 @@ The following built-in resolvers are available:
 | `env` | Environment variable | The value of the named environment variable. An error is raised if it is not set. |
 | `path` | A file or directory path | The absolute, normalized path, resolved relative to pyAML's configuration root. The target is not loaded as part of loading the configuration. |
 | `file` | A YAML, YML, or JSON file path | The path to a file which should be loaded and expanded into the configuration as part of loading it. Relative paths use the configuration root. |
+| `template` | A template name and positional arguments | `${template:NAME,ARG1,ARG2}` inserts a copy of a registered template with its parameters substituted. |
 
 Configuration files can also be included without an explicit `file` expression. A string ending in `.yaml`, `.yml`, or `.json` is loaded automatically for convenience. This makes it easy to split the configuration into several files if one wishes.
 
 ```{warning}
 If you include a `.yaml`, `.yml`, or `.json` in the configuration file which you do not want to be loaded and expanded into the configuration (for example a lattice in JSON format), remember to put `${path:filename}` or you will get an error when loading the configuration.
 ```
+
+## Configuration Templates
+
+Templates reduce repetition in YAML or JSON configuration files. A root-level `templates` list defines reusable configuration bodies. The loader registers these definitions before expanding the file, then removes the list: `templates` is loader metadata, an exception to the constructor-argument rule above.
+
+A template call produces an independent copy of its body. After parameter substitution, the loader expands any resolver expressions in that copy. Use the call as the whole value where a configuration object is expected, such as an entry in `devices`.
+
+Template names must be unique within a loading session. Included files share that session's templates, while independent `Accelerator.load()` calls have separate registries; loading one file does not make its templates available to a later call.
+
+See [Use Configuration Templates](../how-to/configuration/use-templates.md) for the syntax.
