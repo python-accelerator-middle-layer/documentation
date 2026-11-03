@@ -99,7 +99,7 @@ def chroma_callback(action: int, cb_data: dict):
     return True
 
 # %%
-chroma_monitor = SR.get_chromaticity_monitor("CHROMATICITY_MONITOR")
+chroma_monitor = SR.tool.get("CHROMATICITY_MONITOR")
 
 # Measure the chromaticity
 chroma_monitor.measure(
