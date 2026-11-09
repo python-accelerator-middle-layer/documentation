@@ -46,3 +46,12 @@ Control system bindings using ophyd-async.
 
 Python Simulated Commissioning toolkit for synchrotrons.
 ```
+
+```{card} pyLOCO
+
+{bdg-success}`active`
+ [{fab}`github`](https://github.com/elafmusa/pyLOCO){.gh-link}
+ {bdg-link-primary}`PyPI <https://pypi.org/project/accelerator-pyloco/>`
+
+Python implementation of the Linear Optics from Closed Orbits (LOCO) for fitting accelerator models to measured or error-simulated data.
+```
